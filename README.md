@@ -40,10 +40,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">vwmp</h3>
+  <h3 align="center">Visual Workflow Management Platform (VWMP)</h3>
 
   <p align="center">
-    Project description goes here
+    A lightweight, plugin-based visual workflow management platform. Drag-and-drop workflow builder, framework-agnostic core, extensible via plugins.
     <br />
     <a href="https://github.com/earlution/vwmp"><strong>Explore the docs »</strong></a>
     <br />
@@ -92,7 +92,17 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to give you a starter, so you don't have to start from scratch. You can customize this template to fit your project's needs.
+VWMP is a lightweight, plugin-based visual workflow management platform that enables teams to build, execute, and monitor automation workflows through an intuitive drag-and-drop interface.
+
+**Key Features:**
+- 🎨 **Visual Workflow Designer** - Build workflows visually, no CLI required
+- 🔌 **Plugin Architecture** - Extensible via custom step handlers and workflow types
+- ⚡ **Lightweight Core** - Minimal overhead, framework-agnostic Python engine
+- 🚀 **FastAPI Backend** - High-performance API layer (optional headless mode)
+- 📊 **Real-time Monitoring** - Track workflow execution with live status updates
+- 📝 **YAML/JSON Definitions** - Version-controlled, human-readable workflow configs
+
+Perfect for release automation, documentation workflows, code quality checks, and any repeatable process that benefits from visual design and plugin extensibility.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,16 +110,9 @@ Here's a blank template to give you a starter, so you don't have to start from s
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
+* [![Python][Python.org]][Python-url]
+* [![FastAPI][FastAPI.io]][FastAPI-url]
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -123,21 +126,22 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Python 3.8+
+* pip (Python package manager)
+* Node.js and npm (for frontend development)
 
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Clone the repo
    ```sh
    git clone https://github.com/earlution/vwmp.git
+   cd vwmp
    ```
-2. Install NPM packages
+2. Install Python dependencies
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. Install frontend dependencies (if applicable)
    ```sh
    npm install
    ```
@@ -149,9 +153,15 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+VWMP enables you to build and execute workflows through a visual designer interface. Here are some common use cases:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+* **Release Automation** - Automate your software release process with visual workflow design
+* **Documentation Workflows** - Generate and maintain documentation automatically
+* **Code Quality Checks** - Run linting, testing, and quality gates as part of your workflow
+* **CI/CD Pipelines** - Build continuous integration and deployment workflows visually
+* **Custom Automation** - Create any repeatable process workflow with plugin extensibility
+
+_For more examples and detailed documentation, please refer to the [Documentation](https://github.com/earlution/vwmp/wiki)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -253,7 +263,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-url]: https://github.com/earlution/vwmp/issues
 [license-shield]: https://img.shields.io/github/license/earlution/vwmp.svg?style=for-the-badge
 [license-url]: https://github.com/earlution/vwmp/blob/main/LICENSE
-[version-shield]: https://img.shields.io/badge/version-0.0.0%2B1-blue.svg?style=for-the-badge
+[version-shield]: https://img.shields.io/badge/version-0.0.0%2B2-blue.svg?style=for-the-badge
 [version-url]: https://github.com/earlution/vwmp/releases
 [pr-shield]: https://img.shields.io/github/issues-pr/earlution/vwmp.svg?style=for-the-badge
 [pr-url]: https://github.com/earlution/vwmp/pulls
@@ -268,20 +278,10 @@ Use this space to list resources you find helpful and would like to give credit 
 [languages-shield]: https://img.shields.io/github/languages/count/earlution/vwmp.svg?style=for-the-badge
 [languages-url]: https://github.com/earlution/vwmp
 [product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
+[Python.org]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
+[Python-url]: https://www.python.org/
+[FastAPI.io]: https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi&logoColor=white
+[FastAPI-url]: https://fastapi.tiangolo.com/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com
 

@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.0+2] - 2025-11-21
+
+### Added
+- Project description and contextualization
+- GitHub topics reference file
+- Updated README with VWMP project details
+- Updated Built With section (Python, FastAPI, React)
+- Updated Getting Started and Usage sections
+
 ## [0.0.0+1] - 2025-11-21
 
 ### Added
@@ -23,7 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT License
 - Git repository setup
 
-[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+1...HEAD
+[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+2...HEAD
+[0.0.0+2]: https://github.com/earlution/vwmp/compare/v0.0.0+1...v0.0.0+2
 [0.0.0+1]: https://github.com/earlution/vwmp/compare/v0.0.0+0...v0.0.0+1
 [0.0.0+0]: https://github.com/earlution/vwmp/releases/tag/v0.0.0+0
 
