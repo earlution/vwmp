@@ -164,7 +164,7 @@ KB/Architecture/
 
 ### ✅ Technology Stack
 - **Frontend:** React (recommended) or Vue.js with React Flow/Vue Flow
-- **Backend:** FastAPI + WebSocket
+- **Backend:** Django REST Framework + Django Channels
 - **Core Engine:** Python 3.13+ (framework-agnostic)
 - **Storage:** JSON/YAML files (recommended) or PostgreSQL
 

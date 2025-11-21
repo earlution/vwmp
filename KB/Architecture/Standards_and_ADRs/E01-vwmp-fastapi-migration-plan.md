@@ -40,7 +40,7 @@ This document provides a detailed migration plan for moving VWMP from Django RES
 ### Django API Layer (Current)
 
 ```
-src/vwmp_django/vwmp/
+src/confidentia_django/vwmp/
   views.py              # Django REST API endpoints
   urls.py               # URL routing
   apps.py               # Django app config
@@ -214,7 +214,7 @@ vwmp/
 
 **Tasks:**
 1. **Remove Django API Code**
-   - Remove `src/vwmp_django/vwmp/views.py` API endpoints
+   - Remove `src/confidentia_django/vwmp/views.py` API endpoints
    - Keep Django templates if serving from Django
    - Update Django URLs (remove API routes)
 

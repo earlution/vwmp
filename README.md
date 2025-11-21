@@ -290,7 +290,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-url]: https://github.com/earlution/vwmp/issues
 [license-shield]: https://img.shields.io/github/license/earlution/vwmp.svg?style=for-the-badge
 [license-url]: https://github.com/earlution/vwmp/blob/main/LICENSE
-[version-shield]: https://img.shields.io/badge/version-0.0.0%2B4-blue.svg?style=for-the-badge
+[version-shield]: https://img.shields.io/badge/version-0.0.0%2B5-blue.svg?style=for-the-badge
 [version-url]: https://github.com/earlution/vwmp/releases
 [pr-shield]: https://img.shields.io/github/issues-pr/earlution/vwmp.svg?style=for-the-badge
 [pr-url]: https://github.com/earlution/vwmp/pulls

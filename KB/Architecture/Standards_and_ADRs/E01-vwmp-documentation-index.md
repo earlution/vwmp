@@ -38,6 +38,31 @@
 - Plugin development guide
 - Open-source packaging strategy
 
+### 3. API Design Specification
+**File:** `E01-vwmp-api-design.md`
+**Purpose:** REST API and WebSocket interface specification
+**Status:** Draft - Design
+**Key Content:**
+- REST API endpoints (workflows, execution, plugins)
+- WebSocket protocol and message formats
+- Request/response models
+- Error handling and status codes
+- Authentication and authorization
+- Rate limiting and pagination
+
+### 4. Security Architecture
+**File:** `E01-vwmp-security-architecture.md`
+**Purpose:** Security model, authentication, authorization, plugin security
+**Status:** Draft - Design
+**Key Content:**
+- Authentication methods (JWT, session-based)
+- Role-based access control (RBAC)
+- Input validation strategies
+- Plugin isolation and security
+- Secure execution model
+- Audit logging
+- Vulnerability management
+
 ---
 
 ## Technology Decision Records (ADRs)
@@ -164,15 +189,18 @@ find KB/Architecture/Standards_and_ADRs -name "E01-vwmp-*.md" -type f
 **Files to Extract:**
 1. `E01-vwmp-platform-architecture.md`
 2. `E01-vwmp-plugin-architecture.md`
-3. `E01-vwmp-fastapi-decision.md`
-4. `E01-vwmp-frontend-technology-decision.md`
-5. `E01-vwmp-visual-designer-uiux.md`
-6. `E01-vwmp-lightweightness-requirements.md`
-7. `E01-vwmp-tech-stack-open-source-evaluation.md`
-8. `E01-vwmp-fastapi-migration-plan.md`
-9. `E01-vwmp-spin-off-readiness-analysis.md`
-10. `E01-vwmp-documentation-index.md` (this file)
-11. `README.md` (VWMP ADRs index)
+3. `E01-vwmp-api-design.md`
+4. `E01-vwmp-security-architecture.md`
+5. `E01-vwmp-fastapi-decision.md`
+6. `E01-vwmp-frontend-technology-decision.md`
+7. `E01-vwmp-visual-designer-uiux.md`
+8. `E01-vwmp-lightweightness-requirements.md`
+9. `E01-vwmp-tech-stack-open-source-evaluation.md`
+10. `E01-vwmp-fastapi-migration-plan.md`
+11. `E01-vwmp-spin-off-readiness-analysis.md`
+12. `E01-vwmp-spin-off-preparation.md`
+13. `E01-vwmp-documentation-index.md` (this file)
+14. `README.md` (VWMP ADRs index)
 
 ### Step 2: Copy to Standalone Project
 
@@ -217,6 +245,8 @@ Update `README.md` to reflect standalone project structure.
 |----------|--------|----------|-------------------|
 | Platform Architecture | Draft | High | ✅ Yes |
 | Plugin Architecture | Draft | High | ✅ Yes |
+| API Design | Draft | High | ✅ Yes |
+| Security Architecture | Draft | High | ✅ Yes |
 | FastAPI Decision | ✅ Approved | ⚠️ Critical | ✅ Yes |
 | Frontend Decision | ✅ Approved | High | ✅ Yes |
 | Visual Designer UI/UX | Draft | Medium | ✅ Yes |
@@ -224,6 +254,7 @@ Update `README.md` to reflect standalone project structure.
 | Tech Stack Evaluation | Evaluation | High | ✅ Yes |
 | FastAPI Migration Plan | Plan | ⚠️ Critical | ✅ Yes |
 | Spin-Off Readiness | Analysis | High | ✅ Yes |
+| Spin-Off Preparation | Preparation | High | ✅ Yes |
 | Documentation Index | Complete | Medium | ✅ Yes |
 
 **Overall Status:** ✅ **All documents ready for spin-off**

@@ -194,12 +194,12 @@ This document provides a quick reference summary of all technology stack decisio
 
 **Rationale:**
 1. **Separation of Concerns**
-   - Isolates Project-specific-specific code from generic core engine
+   - Isolates Confidentia-specific code from generic core engine
    - **Critical for spin-off** - generic plugins can be open-sourced
 
 2. **Spin-Off Ready**
    - Generic plugins (Git, Release, Filesystem) can be open-sourced
-   - Project-specific plugins (KB, Kanban, Validators) remain proprietary
+   - Confidentia plugins (KB, Kanban, Validators) remain proprietary
    - **Clear separation** enables standalone project
 
 3. **Extensibility**
@@ -261,7 +261,7 @@ This document provides a quick reference summary of all technology stack decisio
 
 ### 3. **Spin-Off Ready**
 - Generic components can be extracted
-- Project-specific-specific code isolated
+- Confidentia-specific code isolated
 - Clear separation of concerns
 - Easy to package independently
 

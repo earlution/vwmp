@@ -21,7 +21,7 @@ This document analyzes the current VWMP architecture against the objective of sp
 From the architecture documents, VWMP was designed with these principles for open-source spin-off:
 
 1. **Framework-Agnostic Core:** Core engine independent of project-specific integrations
-2. **Clear Plugin Boundaries:** Project-specific code isolated in adapter plugins
+2. **Clear Plugin Boundaries:** Confidentia-specific code isolated in adapter plugins
 3. **Configuration-Driven:** No hardcoded paths or assumptions
 4. **Open-Source Ready:** Architecture designed for standalone deployment
 
@@ -34,8 +34,8 @@ From the architecture documents, VWMP was designed with these principles for ope
 #### 1. Core Engine Isolation
 **Status:** ✅ Well Isolated
 
-- **Location:** `src/vwmp/core/`
-- **Dependencies:** No FastAPI imports, no Project-specific code
+- **Location:** `src/confidentia/vwmp/core/`
+- **Dependencies:** No Django imports, no Confidentia-specific code
 - **Framework:** Framework-agnostic Python 3.13+
 - **Components:**
   - Workflow parser, validator, executor
@@ -45,24 +45,24 @@ From the architecture documents, VWMP was designed with these principles for ope
 
 **Verdict:** Core engine can be extracted as-is to standalone package.
 
-#### 2. FastAPI Integration Separation
+#### 2. Django Integration Separation
 **Status:** ✅ Properly Separated
 
-- **Location:** `src/vwmp_web/vwmp/`
-- **Dependencies:** Imports core via `from src.vwmp.core import ...`
-- **Coupling:** One-way dependency (FastAPI → Core, not Core → FastAPI)
+- **Location:** `src/confidentia_django/vwmp/`
+- **Dependencies:** Imports core via `from src.confidentia.vwmp.core import ...`
+- **Coupling:** One-way dependency (Django → Core, not Core → Django)
 
-**Verdict:** FastAPI integration is separate and can be optional component or separate package.
+**Verdict:** Django integration is separate and can be optional component or separate package.
 
 #### 3. Generic Plugins Separation
 **Status:** ✅ Well Separated
 
-- **Location:** `src/vwmp/plugins/`
+- **Location:** `src/confidentia/vwmp/plugins/`
 - **Generic Plugins:**
   - `git/` - Generic Git operations (stage, commit, tag, push)
   - `release/` - Generic release workflow (version bump, changelog)
   - `kanban/` - Generic Kanban workflow (could be generic or specific)
-- **No Project dependencies:** Generic plugins don't import Project code
+- **No Confidentia dependencies:** Generic plugins don't import Confidentia code
 
 **Verdict:** Generic plugins can be included in open-source package.
 
@@ -70,22 +70,22 @@ From the architecture documents, VWMP was designed with these principles for ope
 
 ### ❌ **ISSUES - Needs Refactoring**
 
-#### 1. Project-Specific Handler Location
+#### 1. Confidentia-Specific Handler Location
 **Status:** ❌ **Incorrect Location**
 
 **Current State:**
-- Project-specific handlers (`KanbanUpdateHandler`, `ValidatorExecutionHandler`) are in `plugins/release/handlers.py`
-- They're registered as `vwmp.kanban_update` and `vwmp.run_validators`
-- `plugins/project/__init__.py` just re-exports from release plugin
+- Confidentia handlers (`KanbanUpdateHandler`, `ValidatorExecutionHandler`) are in `plugins/release/handlers.py`
+- They're registered as `confidentia.kanban_update` and `confidentia.run_validators`
+- `plugins/confidentia/__init__.py` just re-exports from release plugin
 
 **Problem:**
-- Project-specific code is mixed with generic release plugin
-- Makes separation difficult - can't easily exclude Project-specific handlers
+- Confidentia-specific code is mixed with generic release plugin
+- Makes separation difficult - can't easily exclude Confidentia handlers
 
 **Required Fix:**
 ```
 Move to:
-src/vwmp/plugins/project/
+src/confidentia/vwmp/plugins/confidentia/
   __init__.py          # Register handlers
   handlers.py          # KanbanUpdateHandler, ValidatorExecutionHandler
   kanban_updater.py    # Extract Kanban update logic
@@ -97,7 +97,7 @@ src/vwmp/plugins/project/
 ---
 
 #### 2. Hardcoded Script Paths
-**Status:** ❌ **Hardcoded Project Paths**
+**Status:** ❌ **Hardcoded Confidentia Paths**
 
 **Current State:**
 ```python
@@ -112,7 +112,7 @@ validators = context.step_config.get("validators", [
 ```
 
 **Problem:**
-- Hardcoded paths to Project-specific scripts
+- Hardcoded paths to Confidentia-specific scripts
 - Scripts are not in VWMP package - they're in project root
 - Makes VWMP dependent on project structure
 
@@ -136,27 +136,27 @@ config:
 ---
 
 #### 3. Package Namespace
-**Status:** ⚠️ **Includes "Project" in Namespace**
+**Status:** ⚠️ **Includes "Confidentia" in Namespace**
 
 **Current State:**
-- Core package: `src/vwmp/`
-- FastAPI app: `src/vwmp_web/vwmp/`
-- Imports: `from src.vwmp.core import ...`
+- Core package: `src/confidentia/vwmp/`
+- Django app: `src/confidentia_django/vwmp/`
+- Imports: `from src.confidentia.vwmp.core import ...`
 
 **Problem:**
-- Package namespace includes "project-specific" which is confusing for standalone package
-- Users would import `from vwmp import ...` even in standalone package
+- Package namespace includes "confidentia" which is confusing for standalone package
+- Users would import `from confidentia.vwmp import ...` even in standalone package
 
 **Required Fix:**
 - During spin-off, rename to `vwmp/` package
-- Keep `vwmp/` as adapter/compatibility layer temporarily
+- Keep `confidentia/vwmp/` as adapter/compatibility layer temporarily
 - Update all imports to use `vwmp.` namespace
 
 **Migration Path:**
 ```
 Phase 1: Keep both namespaces
   vwmp/                    # New standalone package
-  vwmp/        # Compatibility adapter (imports from vwmp)
+  confidentia/vwmp/        # Compatibility adapter (imports from vwmp)
 
 Phase 2: Remove compatibility layer after migration
 ```
@@ -165,22 +165,22 @@ Phase 2: Remove compatibility layer after migration
 
 ---
 
-#### 4. Project Plugin Isolation
+#### 4. Confidentia Plugin Isolation
 **Status:** ❌ **Not Properly Isolated**
 
 **Current State:**
-- `plugins/project/__init__.py` just re-exports handlers from release plugin
+- `plugins/confidentia/__init__.py` just re-exports handlers from release plugin
 - Handlers are implemented in `plugins/release/handlers.py`
-- No actual Project-specific plugin structure
+- No actual Confidentia-specific plugin structure
 
 **Problem:**
-- Project-specific handlers are coupled to release plugin
-- Can't easily exclude Project code from open-source package
+- Confidentia handlers are coupled to release plugin
+- Can't easily exclude Confidentia code from open-source package
 
 **Required Fix:**
-- Move handlers to `plugins/project/handlers.py`
-- Implement proper plugin structure in `plugins/project/`
-- Register handlers in `plugins/project/__init__.py`
+- Move handlers to `plugins/confidentia/handlers.py`
+- Implement proper plugin structure in `plugins/confidentia/`
+- Register handlers in `plugins/confidentia/__init__.py`
 
 **Impact:** Medium - Architectural cleanup needed
 
@@ -216,16 +216,16 @@ Phase 2: Remove compatibility layer after migration
 
 **What's Ready:**
 - ✅ Core engine is framework-agnostic and extractable
-- ✅ FastAPI integration is separate and optional
+- ✅ Django integration is separate and optional
 - ✅ Generic plugins (Git, Release) are well-separated
 - ✅ Plugin architecture supports extensibility
 - ✅ Configuration system is flexible
 
 **What's Not Ready:**
-- ❌ Project-specific handlers in wrong location
+- ❌ Confidentia handlers in wrong location
 - ❌ Hardcoded script paths prevent clean separation
-- ❌ Package namespace includes "project-specific"
-- ❌ Project plugin not properly isolated
+- ❌ Package namespace includes "confidentia"
+- ❌ Confidentia plugin not properly isolated
 
 ---
 
@@ -233,21 +233,21 @@ Phase 2: Remove compatibility layer after migration
 
 ### Priority 1: High - Blocks Spin-Off
 
-#### 1. Move Project Handlers to Proper Location
-**Task:** Refactor Project-specific handlers
+#### 1. Move Confidentia Handlers to Proper Location
+**Task:** Refactor Confidentia-specific handlers
 
 **Steps:**
-1. Create `src/vwmp/plugins/project/handlers.py`
+1. Create `src/confidentia/vwmp/plugins/confidentia/handlers.py`
 2. Move `KanbanUpdateHandler` and `ValidatorExecutionHandler` from `plugins/release/handlers.py`
-3. Update `plugins/project/__init__.py` to register handlers
-4. Remove Project-specific handlers from release plugin
-5. Update plugin registry to load from project-specific plugin
+3. Update `plugins/confidentia/__init__.py` to register handlers
+4. Remove Confidentia handlers from release plugin
+5. Update plugin registry to load from confidentia plugin
 
 **Files to Modify:**
-- `src/vwmp/plugins/project/handlers.py` (new)
-- `src/vwmp/plugins/project/__init__.py` (update)
-- `src/vwmp/plugins/release/handlers.py` (remove handlers)
-- `src/vwmp/plugins/registry.py` (update imports)
+- `src/confidentia/vwmp/plugins/confidentia/handlers.py` (new)
+- `src/confidentia/vwmp/plugins/confidentia/__init__.py` (update)
+- `src/confidentia/vwmp/plugins/release/handlers.py` (remove handlers)
+- `src/confidentia/vwmp/plugins/registry.py` (update imports)
 
 ---
 
@@ -261,26 +261,26 @@ Phase 2: Remove compatibility layer after migration
 4. Provide sensible defaults but allow override
 
 **Files to Modify:**
-- `src/vwmp/plugins/project/handlers.py` (refactor)
+- `src/confidentia/vwmp/plugins/confidentia/handlers.py` (refactor)
 - Workflow definitions (add script path configs)
 
 ---
 
 ### Priority 2: Medium - Important for Clean Spin-Off
 
-#### 3. Improve Project Plugin Isolation
-**Task:** Properly structure Project plugin
+#### 3. Improve Confidentia Plugin Isolation
+**Task:** Properly structure Confidentia plugin
 
 **Steps:**
-1. Create proper plugin structure in `plugins/project/`
+1. Create proper plugin structure in `plugins/confidentia/`
 2. Extract Kanban updater logic to separate module
 3. Extract validator execution to separate module
 4. Implement proper plugin initialization
 
 **Files to Create/Modify:**
-- `src/vwmp/plugins/project/kanban_updater.py` (new)
-- `src/vwmp/plugins/project/validators.py` (new)
-- `src/vwmp/plugins/project/__init__.py` (refactor)
+- `src/confidentia/vwmp/plugins/confidentia/kanban_updater.py` (new)
+- `src/confidentia/vwmp/plugins/confidentia/validators.py` (new)
+- `src/confidentia/vwmp/plugins/confidentia/__init__.py` (refactor)
 
 ---
 
@@ -303,8 +303,8 @@ Phase 2: Remove compatibility layer after migration
 
 ### Phase 1: Architectural Cleanup (Before Spin-Off)
 
-**Sprint 1: Project Handler Isolation**
-1. Move Project-specific handlers to `plugins/project/`
+**Sprint 1: Confidentia Handler Isolation**
+1. Move Confidentia handlers to `plugins/confidentia/`
 2. Remove hardcoded script paths
 3. Update plugin registry
 
@@ -350,9 +350,9 @@ Phase 2: Remove compatibility layer after migration
 **Recommendation:** Complete Phase 1 refactoring before attempting spin-off to ensure clean separation and maintainability.
 
 **Key Issues to Address:**
-1. Move Project-specific handlers to proper plugin location
+1. Move Confidentia handlers to proper plugin location
 2. Remove hardcoded script paths
-3. Properly isolate Project plugin
+3. Properly isolate Confidentia plugin
 
 **Timeline:** 1-2 weeks for architectural cleanup, then ready for spin-off planning.
 

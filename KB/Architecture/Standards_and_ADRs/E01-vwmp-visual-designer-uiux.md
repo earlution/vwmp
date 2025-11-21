@@ -235,7 +235,7 @@ This document defines the UI/UX design for the Visual Workflow Designer, a drag-
 │                                     │
 │  Version File *                     │
 │  ┌───────────────────────────────┐ │
-│  │ VERSION    │ │
+│  │ src/confidentia/version.py    │ │
 │  └───────────────────────────────┘ │
 │  ℹ️ Path to version file           │
 │                                     │
@@ -719,12 +719,12 @@ This document defines the UI/UX design for the Visual Workflow Designer, a drag-
 - **Better Flow Library:** React Flow is more mature than Vue Flow
 - **Component Library:** Material-UI (MUI) provides comprehensive components
 - **TypeScript Support:** Better TypeScript integration
-- **Progressive Enhancement:** Can integrate with FastAPI templates
+- **Progressive Enhancement:** Can integrate with Django templates
 
 **Alternative: Vue.js (with Vue Flow)**
 
 **Rationale:**
-- **Easier Learning Curve:** More approachable for FastAPI developers
+- **Easier Learning Curve:** More approachable for Django developers
 - **Smaller Bundle Size:** More lightweight
 - **Good Performance:** Excellent reactivity system
 
@@ -770,7 +770,7 @@ This document defines the UI/UX design for the Visual Workflow Designer, a drag-
 ### Real-Time Communication
 
 **WebSocket:**
-- FastAPI Channels (backend)
+- Django Channels (backend)
 - Socket.io Client (frontend) or native WebSocket API
 
 ### State Management

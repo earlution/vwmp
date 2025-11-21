@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.0+5] - 2025-11-21
+
+### Added
+- API Design Specification (E01-vwmp-api-design.md)
+  - REST API endpoints for workflow management (CRUD)
+  - Execution endpoints (execute, status, cancel)
+  - Plugin discovery endpoints
+  - WebSocket protocol for real-time updates
+  - Authentication, authorization, rate limiting, pagination
+- Security Architecture (E01-vwmp-security-architecture.md)
+  - Authentication methods (JWT, Session-based)
+  - Authorization (RBAC with roles)
+  - Input validation layers
+  - Plugin security and isolation
+  - Secure execution (workspace isolation, command validation)
+  - Network security (HTTPS, CORS, WebSocket security)
+  - Audit logging and vulnerability management
+
+### Changed
+- Updated API Design document: removed Django references, updated file paths
+- Updated Security Architecture document: removed Django-specific references
+
 ## [0.0.0+4] - 2025-11-21
 
 ### Changed
@@ -61,7 +83,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT License
 - Git repository setup
 
-[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+4...HEAD
+[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+5...HEAD
+[0.0.0+5]: https://github.com/earlution/vwmp/compare/v0.0.0+4...v0.0.0+5
 [0.0.0+4]: https://github.com/earlution/vwmp/compare/v0.0.0+3...v0.0.0+4
 [0.0.0+3]: https://github.com/earlution/vwmp/compare/v0.0.0+2...v0.0.0+3
 [0.0.0+2]: https://github.com/earlution/vwmp/compare/v0.0.0+1...v0.0.0+2
