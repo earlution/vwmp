@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.0+7] - 2025-11-21
+
+### Added
+- Project Status section in README
+  - Documented current development state (VWMP in Confidentia repository)
+  - Explained historical context (developed as sub-project to support Confidentia)
+  - Described spin-off in progress and goals
+  - Clarified purpose of this repository as spin-off destination
+
 ## [0.0.0+6] - 2025-11-21
 
 ### Changed
@@ -92,7 +101,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT License
 - Git repository setup
 
-[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+6...HEAD
+[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+7...HEAD
+[0.0.0+7]: https://github.com/earlution/vwmp/compare/v0.0.0+6...v0.0.0+7
 [0.0.0+6]: https://github.com/earlution/vwmp/compare/v0.0.0+5...v0.0.0+6
 [0.0.0+5]: https://github.com/earlution/vwmp/compare/v0.0.0+4...v0.0.0+5
 [0.0.0+4]: https://github.com/earlution/vwmp/compare/v0.0.0+3...v0.0.0+4

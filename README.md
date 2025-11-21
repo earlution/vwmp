@@ -109,6 +109,35 @@ Perfect for release automation, documentation workflows, code quality checks, an
 
 
 
+### Project Status
+
+**Current Development State:**
+
+VWMP is currently being developed as a sub-project within [Confidentia](https://github.com/earlution/confidentia), where it was originally created to support Confidentia's development workflows. The codebase currently resides in the Confidentia repository.
+
+**Spin-Off in Progress:**
+
+We are actively working to make VWMP a standalone, independent project. The goal is to extract VWMP from Confidentia and establish it as its own open-source project in this repository. This includes:
+
+- Separating VWMP-specific code from Confidentia dependencies
+- Establishing independent architecture and plugin system
+- Creating standalone documentation and deployment guides
+- Setting up independent CI/CD and release processes
+
+**Why This Repository Exists:**
+
+This repository serves as the destination for the VWMP spin-off. It currently contains:
+- Complete architecture documentation and design decisions
+- Project structure and setup files
+- Comprehensive knowledge base (KB/) with all VWMP documentation
+- Planning and preparation for the standalone release
+
+Once the spin-off is complete, this repository will contain the full VWMP codebase and be ready for independent development and contributions.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 ### Built With
 
 * [![Python][Python.org]][Python-url]
@@ -342,7 +371,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-url]: https://github.com/earlution/vwmp/issues
 [license-shield]: https://img.shields.io/github/license/earlution/vwmp.svg?style=for-the-badge
 [license-url]: https://github.com/earlution/vwmp/blob/main/LICENSE
-[version-shield]: https://img.shields.io/badge/version-0.0.0%2B6-blue.svg?style=for-the-badge
+[version-shield]: https://img.shields.io/badge/version-0.0.0%2B7-blue.svg?style=for-the-badge
 [version-url]: https://github.com/earlution/vwmp/releases
 [pr-shield]: https://img.shields.io/github/issues-pr/earlution/vwmp.svg?style=for-the-badge
 [pr-url]: https://github.com/earlution/vwmp/pulls
