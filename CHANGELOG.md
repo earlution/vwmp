@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.0+3] - 2025-11-21
+
+### Added
+- Knowledge Base (KB/) directory with comprehensive documentation
+- Architecture documentation (19 files):
+  - Standards & ADRs (12 files): Platform architecture, plugin architecture, tech stack decisions, FastAPI migration plan, spin-off preparation
+  - C4 Architecture views (4 files): Context, Container, Component views and runtime sequences
+  - Integration Architecture (3 files): Integration architecture, gap analysis, completion summary
+- Developer documentation (10 files):
+  - Documentation hub and tutorials (release workflow, kanban review workflow)
+  - Reference guides and user guides
+  - Best practices, configuration examples, troubleshooting
+- Project Management documentation (7 files):
+  - Epic 01 documentation (3 files): Main epic, development plan, phase 2 plan
+  - Story documentation (4 files): All Epic 01 stories
+
 ## [0.0.0+2] - 2025-11-21
 
 ### Added
@@ -32,7 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT License
 - Git repository setup
 
-[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+2...HEAD
+[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+3...HEAD
+[0.0.0+3]: https://github.com/earlution/vwmp/compare/v0.0.0+2...v0.0.0+3
 [0.0.0+2]: https://github.com/earlution/vwmp/compare/v0.0.0+1...v0.0.0+2
 [0.0.0+1]: https://github.com/earlution/vwmp/compare/v0.0.0+0...v0.0.0+1
 [0.0.0+0]: https://github.com/earlution/vwmp/releases/tag/v0.0.0+0
