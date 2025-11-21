@@ -19,7 +19,7 @@ This document outlines the implementation plan for the **Visual Workflow Designe
 ### ✅ What's Complete
 
 1. **Backend Infrastructure** (100% complete)
-   - ✅ Django REST API endpoints (`/api/vwmp/workflows/`)
+   - ✅ FastAPI REST API endpoints (`/api/vwmp/workflows/`)
    - ✅ Workflow execution engine
    - ✅ Plugin system and registry
    - ✅ Workflow storage and versioning
@@ -88,7 +88,7 @@ This document outlines the implementation plan for the **Visual Workflow Designe
    - React Flow is mature and feature-rich
    - Good community support
    - Extensive documentation
-   - Works well with Django REST API
+   - Works well with FastAPI REST API
 
 2. **Vue.js + Vue Flow**
    - Vue Flow is newer but capable
@@ -103,7 +103,7 @@ This document outlines the implementation plan for the **Visual Workflow Designe
 **Recommendation:** React + React Flow
 - Better fit for complex interactive UI
 - React Flow has proven track record
-- Can be integrated with Django via CDN or npm
+- Can be integrated with FastAPI via CDN or npm
 
 **Deliverable:** Technology decision document with rationale
 
@@ -266,7 +266,7 @@ This document outlines the implementation plan for the **Visual Workflow Designe
 
 ## Technical Considerations
 
-### 1. React Integration with Django
+### 1. React Integration with FastAPI
 
 **Option 1: CDN-based React (Quick Start)**
 ```html
@@ -289,7 +289,7 @@ This document outlines the implementation plan for the **Visual Workflow Designe
 ### 2. API Integration
 
 - Use `fetch()` API for all API calls
-- Handle authentication (CSRF tokens for Django)
+- Handle authentication (CSRF tokens for FastAPI)
 - Error handling and loading states
 - Real-time updates via polling (WebSocket can be added later)
 
@@ -341,8 +341,8 @@ This document outlines the implementation plan for the **Visual Workflow Designe
 
 ## Related Documents
 
-- [Epic 01 Overview](../Epic-21.md)
-- [Epic 01 Development Plan](Epic-21-Development-Plan.md)
+- [Epic 01 Overview](../Epic-01.md)
+- [Epic 01 Development Plan](Epic-01-Development-Plan.md)
 - [VWMP UI/UX Design](../../../Architecture/Standards_and_ADRs/E01-vwmp-visual-designer-uiux.md)
 - [VWMP Platform Architecture](../../../Architecture/Standards_and_ADRs/E01-vwmp-platform-architecture.md)
 

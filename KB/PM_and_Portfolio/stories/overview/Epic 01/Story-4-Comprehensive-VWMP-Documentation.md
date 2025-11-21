@@ -107,9 +107,9 @@ Create comprehensive documentation for the Visual Workflow Management Platform (
 ## Notes & References
 
 ### Epic & Planning Documents
-- **[Epic 01 Overview](../../../epics/overview/Epic%2021/Epic-21.md)** - Complete epic overview with goals, stories, and status
-- **[Development Engagement Plan](../../../epics/overview/Epic%2021/Epic-21-Development-Plan.md)** - Full development plan with all phases
-- **[Phase 2 Implementation Plan](../../../epics/overview/Epic%2021/Epic-21-Phase-2-Plan.md)** - Visual designer implementation plan
+- **[Epic 01 Overview](../../../epics/overview/Epic%2001/Epic-01.md)** - Complete epic overview with goals, stories, and status
+- **[Development Engagement Plan](../../../epics/overview/Epic%2001/Epic-01-Development-Plan.md)** - Full development plan with all phases
+- **[Phase 2 Implementation Plan](../../../epics/overview/Epic%2001/Epic-01-Phase-2-Plan.md)** - Visual designer implementation plan
 
 ### Architecture Documentation
 - **[Platform Architecture](../../../../Architecture/Standards_and_ADRs/E01-vwmp-platform-architecture.md)** - High-level platform architecture
@@ -121,10 +121,10 @@ Create comprehensive documentation for the Visual Workflow Management Platform (
 - **Kanban Review Workflow:** `workflows/kanban-review-workflow.yaml` - Kanban Review workflow definition
 - **Release Workflow Usage:** `KB/Documentation/Developer_Docs/vwmp/release-workflow-usage.md` - Release Workflow usage guide
 - **Visual Designer:** http://localhost:8000/vwmp/designer/ - Visual workflow designer interface with workflow type badges
-- **Release Workflow Plugin:** `src/confidentia/vwmp/plugins/release/` - Release workflow plugin implementation with 10 step handlers
-- **Kanban Plugin:** `src/confidentia/vwmp/plugins/kanban/` - Kanban Review workflow plugin implementation with 6 step handlers
-- **Release Step Handlers:** `src/confidentia/vwmp/plugins/release/handlers.py` - Release workflow step handlers (version bump, changelog, Git operations, validators)
-- **Kanban Step Handlers:** `src/confidentia/vwmp/plugins/kanban/handlers.py` - Kanban Review workflow step handlers (review state, template divergence, bloat, repetition, coverage gaps, apply updates)
+- **Release Workflow Plugin:** `src/vwmp/plugins/release/` - Release workflow plugin implementation with 10 step handlers
+- **Kanban Plugin:** `src/vwmp/plugins/kanban/` - Kanban Review workflow plugin implementation with 6 step handlers
+- **Release Step Handlers:** `src/vwmp/plugins/release/handlers.py` - Release workflow step handlers (version bump, changelog, Git operations, validators)
+- **Kanban Step Handlers:** `src/vwmp/plugins/kanban/handlers.py` - Kanban Review workflow step handlers (review state, template divergence, bloat, repetition, coverage gaps, apply updates)
 - **Documentation Hub:** `KB/Documentation/Developer_Docs/vwmp/_index.md` - Central navigation for all VWMP documentation
 
 ### Related Stories

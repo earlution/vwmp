@@ -227,7 +227,7 @@ All research that informed this decision:
   - **Deliverable:** Release workflow plugin/adapter:
     - Release workflow type definition
     - Step handlers for release steps (version bump, changelog, etc.)
-    - Confidentia-specific integrations (KB, Kanban) as plugin
+    - Project-specific integrations (KB, Kanban) as plugin
     - Integration with existing release workflow script
   - **Dependencies:** E01:S01:T002 (plugin architecture), E01:S01:T006 (execution engine), E20:S06:T005 (release script) - ✅ COMPLETE
   - **Blocker:** E01:S01:T002, E01:S01:T006
@@ -273,7 +273,7 @@ All research that informed this decision:
 - [ ] **Plugin-Based Architecture** - Core engine framework-agnostic, integrations as plugins
 - [ ] **Configuration-Driven** - No hardcoded project-specific paths or assumptions
 - [ ] **Abstract Interfaces** - Clear interfaces for extensibility (WorkflowExecutor, StepHandler, etc.)
-- [ ] **Confidentia Isolation** - Confidentia-specific code isolated in adapter plugins
+- [ ] **Project Isolation** - Project-specific code isolated in adapter plugins
 - [ ] **Architecture Documentation** - Complete documentation of plugin system, schema, extensibility
 - [ ] **Open-Source Ready** - Architecture designed for future standalone open-source project
 
@@ -338,11 +338,11 @@ All research that informed this decision:
 
 1. **Plugin-Based Architecture:**
    - Core workflow engine should be framework-agnostic
-   - Confidentia-specific integrations (KB structure, Kanban format) should be plugins/adapters
+   - Project-specific integrations (KB structure, Kanban format) should be plugins/adapters
    - Abstract interfaces for all integrations (KB updates, Kanban updates, versioning)
 
 2. **Configuration-Driven Design:**
-   - No hardcoded paths or Confidentia-specific assumptions
+   - No hardcoded paths or Project-specific assumptions
    - KB structure defined via configuration (YAML/JSON)
    - Kanban format defined via configuration
    - Version schema configurable
@@ -350,15 +350,15 @@ All research that informed this decision:
 
 3. **Separation of Concerns:**
    - **Core Engine:** Workflow orchestration, step execution, validation
-   - **Confidentia Adapter:** KB/Kanban integrations specific to Confidentia
+   - **Project Adapter:** KB/Kanban integrations specific to Project
    - **Dashboard UI:** Visual interface (framework-agnostic)
    - **Configuration Layer:** Project-specific settings
 
 4. **Abstract Interfaces:**
-   - `KBUpdater` interface (implemented by `ConfidentiaKBUpdater`)
-   - `KanbanUpdater` interface (implemented by `ConfidentiaKanbanUpdater`)
-   - `VersionManager` interface (implemented by `ConfidentiaVersionManager`)
-   - `ChangelogManager` interface (implemented by `ConfidentiaChangelogManager`)
+   - `KBUpdater` interface (implemented by `ProjectKBUpdater`)
+   - `KanbanUpdater` interface (implemented by `ProjectKanbanUpdater`)
+   - `VersionManager` interface (implemented by `ProjectVersionManager`)
+   - `ChangelogManager` interface (implemented by `ProjectChangelogManager`)
 
 5. **Extensibility Points:**
    - Plugin system for custom integrations
@@ -373,8 +373,8 @@ All research that informed this decision:
    - Examples for different project types
 
 **Implementation Strategy:**
-- Phase 1: Build for Confidentia with independence in mind (abstract interfaces, configuration-driven)
-- Phase 2: Extract Confidentia-specific code into adapter plugins
+- Phase 1: Build for Project with independence in mind (abstract interfaces, configuration-driven)
+- Phase 2: Extract Project-specific code into adapter plugins
 - Phase 3: Create generic configuration templates
 - Phase 4: Package as standalone open-source project with plugin ecosystem
 
@@ -439,9 +439,9 @@ All research that informed this decision:
 ## Notes & References
 
 ### Epic & Planning Documents
-- **[Epic 01 Overview](../../../epics/overview/Epic%2021/Epic-21.md)** - Complete epic overview with goals, stories, and status
-- **[Development Engagement Plan](../../../epics/overview/Epic%2021/Epic-21-Development-Plan.md)** - Full development plan with all phases, tasks, estimates, and dependencies
-- **[Phase 2 Implementation Plan](../../../epics/overview/Epic%2021/Epic-21-Phase-2-Plan.md)** - Detailed frontend visual designer implementation plan
+- **[Epic 01 Overview](../../../epics/overview/Epic%2001/Epic-01.md)** - Complete epic overview with goals, stories, and status
+- **[Development Engagement Plan](../../../epics/overview/Epic%2001/Epic-01-Development-Plan.md)** - Full development plan with all phases, tasks, estimates, and dependencies
+- **[Phase 2 Implementation Plan](../../../epics/overview/Epic%2001/Epic-01-Phase-2-Plan.md)** - Detailed frontend visual designer implementation plan
 
 ### Architecture Documentation (Phase 1 - Completed)
 - **[Platform Architecture](../../../../Architecture/Standards_and_ADRs/E01-vwmp-platform-architecture.md)** - High-level platform architecture design (T001 deliverable)

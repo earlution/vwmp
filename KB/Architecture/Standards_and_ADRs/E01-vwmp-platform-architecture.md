@@ -83,7 +83,7 @@ This document defines the architecture for the Visual Workflow Management Platfo
         ┌────────────┴────────────┐
         │                         │
 ┌───────▼────────┐      ┌─────────▼──────────┐
-│ Generic        │      │ Confidentia        │
+│ Generic        │      │ Project-specific        │
 │ Plugins        │      │ Plugins            │
 │ (Open-Source)  │      │ (Proprietary)      │
 │                │      │                    │
@@ -125,7 +125,7 @@ This document defines the architecture for the Visual Workflow Management Platfo
   - Status and monitoring endpoints
   - Configuration management
   - WebSocket for real-time updates (built-in)
-- **Note:** Django REST Framework was used initially but FastAPI is recommended for lightweightness (5x less memory, 5x faster startup)
+- **Note:** FastAPI REST Framework was used initially but FastAPI is recommended for lightweightness (5x less memory, 5x faster startup)
 
 #### 3. Workflow Execution Engine (Core)
 - **Technology:** Python 3.13+ (framework-agnostic)
@@ -136,7 +136,7 @@ This document defines the architecture for the Visual Workflow Management Platfo
   - Error handling and recovery
   - Plugin system management
 - **Rationale:**
-  - **Framework-agnostic:** No dependencies on Django, FastAPI, or any web framework
+  - **Framework-agnostic:** No dependencies on FastAPI, FastAPI, or any web framework
   - **Standalone ready:** Can be used independently (headless mode)
   - **Spin-off ready:** Easy to extract for standalone open-source project
   - **Plugin support:** Dynamic plugin loading via importlib (standard library)
@@ -149,7 +149,7 @@ This document defines the architecture for the Visual Workflow Management Platfo
   - Integration adapter management
   - Configuration schema validation
 - **Rationale:**
-  - **Separation of Concerns:** Isolates Confidentia-specific code from generic core
+  - **Separation of Concerns:** Isolates Project-specific-specific code from generic core
   - **Spin-Off Ready:** Generic plugins can be open-sourced independently
   - **Extensibility:** Community can add custom workflow types and handlers
   - **Maintainability:** Clear boundaries make codebase easier to understand
@@ -184,7 +184,7 @@ workflow:
 
   # Workflow-level configuration
   config:
-    version_file: "src/confidentia/version.py"
+    version_file: "VERSION"
     changelog_dir: "KB/Changelog_and_Release_Notes/Changelog_Archive"
     main_changelog: "CHANGELOG.md"
 
@@ -238,7 +238,7 @@ workflow:
     - id: "step-5"
       name: "Auto-update Kanban Docs"
       type: "kanban_update"
-      handler: "confidentia.kanban_update"
+      handler: "vwmp.kanban_update"
       config:
         epic_doc_pattern: "KB/PM_and_Portfolio/epics/overview/Epic {epic}/Epic-{epic}.md"
         kanban_board: "KB/PM_and_Portfolio/epics/overview/_index.md"
@@ -258,7 +258,7 @@ workflow:
     - id: "step-7"
       name: "Run Validators"
       type: "validation"
-      handler: "confidentia.run_validators"
+      handler: "vwmp.run_validators"
       config:
         validators:
           - "scripts/validation/validate_branch_context.py"
@@ -361,7 +361,7 @@ The same structure can be represented in JSON format for programmatic generation
     "type": "release",
     "description": "Automated release workflow",
     "config": {
-      "version_file": "src/confidentia/version.py",
+      "version_file": "VERSION",
       "changelog_dir": "KB/Changelog_and_Release_Notes/Changelog_Archive",
       "main_changelog": "CHANGELOG.md"
     },
@@ -555,7 +555,7 @@ plugins/
       changelog_create.py
       changelog_update.py
       readme_update.py
-  confidentia/
+  project/
     handlers/
       kanban_update.py
       run_validators.py
@@ -773,7 +773,7 @@ Configuration values are resolved with variable substitution:
 **Rationale:**
 - **⚠️ Lightweightness (PRIMARY):** 5x less memory (~20-50MB vs ~100-200MB), 5x faster startup (<1s vs ~2-5s), 10x smaller dependencies (~5MB vs ~50MB)
 - **Minimal compute overhead** when developers embed VWMP in their projects
-- **Built-in WebSocket** - no additional dependencies (unlike Django Channels which requires Redis)
+- **Built-in WebSocket** - no additional dependencies (unlike FastAPI Channels which requires Redis)
 - **Automatic API docs** - OpenAPI/Swagger auto-generated
 - **Modern and popular** - growing Python community, excellent developer experience
 - **Async native** - full async/await support for efficient resource usage
@@ -786,13 +786,13 @@ Configuration values are resolved with variable substitution:
 - **Schema Validation:** Pydantic (built-in) + JSON Schema (via jsonschema library)
 - **Async:** Python asyncio for parallel step execution (native async/await)
 
-**Rationale for FastAPI over Django:**
-- **Django is too heavy** - ~100-200MB memory overhead, ~2-5s startup time
-- **Django Channels requires Redis** - additional dependency and overhead
-- **Django is overkill** - VWMP doesn't need most Django features
+**Rationale for FastAPI over FastAPI:**
+- **FastAPI is too heavy** - ~100-200MB memory overhead, ~2-5s startup time
+- **FastAPI Channels requires Redis** - additional dependency and overhead
+- **FastAPI is overkill** - VWMP doesn't need most FastAPI features
 - **High integration impact** - significant overhead on host applications
 
-**Note:** Django REST Framework was initially used but FastAPI is **required** for lightweightness requirements.
+**Note:** FastAPI REST Framework was initially used but FastAPI is **required** for lightweightness requirements.
 
 ---
 
@@ -829,7 +829,7 @@ Configuration values are resolved with variable substitution:
 **Decision:** Python 3.13+ (framework-agnostic)
 
 **Rationale:**
-- **Framework-agnostic:** No dependencies on Django or FastAPI - can be used with any backend or standalone
+- **Framework-agnostic:** No dependencies on FastAPI or FastAPI - can be used with any backend or standalone
 - **Modern Python:** Python 3.13+ provides latest features (type hints, async/await, performance improvements)
 - **Plugin System:** Python's importlib enables dynamic plugin loading without heavy frameworks
 - **Validation:** JSON Schema provides standard validation, jsonschema library is lightweight
@@ -889,10 +889,10 @@ Configuration values are resolved with variable substitution:
    - **Rationale:** React Flow is more mature and proven than Vue Flow, larger ecosystem, better documentation
    - **Selected:** React 18 + React Flow 11 for purpose-built visual editor functionality
 
-3. **WebSocket Library:** Django Channels vs Socket.io vs FastAPI built-in?
+3. **WebSocket Library:** FastAPI Channels vs Socket.io vs FastAPI built-in?
    - **Decision:** FastAPI built-in WebSocket ⚠️ (see [FastAPI Decision ADR](E01-vwmp-fastapi-decision.md))
    - **Rationale:** FastAPI selected for lightweightness (5x less memory, 5x faster startup)
-   - **No Redis required** (unlike Django Channels)
+   - **No Redis required** (unlike FastAPI Channels)
 
 4. **Step Isolation:** Process isolation vs thread-based?
    - **Recommendation:** Thread-based initially, process isolation for security-critical steps
@@ -915,9 +915,9 @@ Configuration values are resolved with variable substitution:
 ## Related Documents
 
 ### Epic & Story Documentation
-- **Epic 01 Overview:** `KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-21.md`
+- **Epic 01 Overview:** `KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-01.md`
 - **Story 1 Details:** `KB/PM_and_Portfolio/stories/overview/Epic 01/Story-1-Visual-Workflow-Management-Platform.md`
-- **Development Plan:** `KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-21-Development-Plan.md`
+- **Development Plan:** `KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-01-Development-Plan.md`
 - **Evaluation Report:** `KB/PM_and_Portfolio/stories/overview/Epic 20/Story-10-Recommendation-Report.md`
 - **Release Requirements:** `KB/PM_and_Portfolio/stories/overview/Epic 20/Story-10-Release-Requirements.md`
 

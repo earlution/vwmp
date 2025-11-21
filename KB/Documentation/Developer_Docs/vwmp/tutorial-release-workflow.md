@@ -72,7 +72,7 @@ Before adding steps, we need to configure the workflow-level settings. These are
 
 2. **Add configuration variables:**
    ```yaml
-   version_file: src/confidentia/version.py
+   version_file: VERSION
    changelog_dir: KB/Changelog_and_Release_Notes/Changelog_Archive
    main_changelog: CHANGELOG.md
    ```

@@ -184,7 +184,7 @@ The epic is organized into four sequential phases, each delivering a complete ve
 - ✅ Workflow type badges and visual distinction for different workflow types
 
 **Parallel Development Dependencies:**
-- ✅ **E20:S10 (Framework Evaluation)** - COMPLETE - Evaluation completed, decision made to build from scratch with Python/Django stack
+- ✅ **E20:S10 (Framework Evaluation)** - COMPLETE - Evaluation completed, decision made to build from scratch with Python/FastAPI stack
 - ✅ **E20:S06 (Infrastructure & Tooling)** - Can leverage existing release workflow script (`scripts/automation/release_workflow.py`) and validation scripts
 - **Parallel Development Candidacy:** Safe - can proceed independently now that evaluation is complete. Platform development does not conflict with Epic 20 maintenance work.
 
@@ -213,8 +213,8 @@ The epic is organized into four sequential phases, each delivering a complete ve
 ## Notes & References
 
 ### Planning Documents
-- **[Development Engagement Plan](Epic-21-Development-Plan.md)** - Complete development plan with all phases, tasks, estimates, and dependencies
-- **[Phase 2 Implementation Plan](Epic-21-Phase-2-Plan.md)** - Detailed frontend visual designer implementation plan (52-98 hours)
+- **[Development Engagement Plan](Epic-01-Development-Plan.md)** - Complete development plan with all phases, tasks, estimates, and dependencies
+- **[Phase 2 Implementation Plan](Epic-01-Phase-2-Plan.md)** - Detailed frontend visual designer implementation plan (52-98 hours)
 
 ### Architecture Documentation
 - **[Platform Architecture](../../../Architecture/Standards_and_ADRs/E01-vwmp-platform-architecture.md)** - High-level platform architecture design

@@ -35,9 +35,9 @@ The Visual Workflow Management Platform (VWMP) provides a visual, intuitive inte
 | **Project Managers** | Person | Non-technical users who need to manage workflows | Use Visual Designer to configure workflows, view execution history |
 | **Release Manager** | Person | Primary user for release workflow use case | Execute release workflows, configure release parameters, monitor releases |
 | **Git Repository** | System | Version control system storing code and workflow definitions | VWMP reads/writes workflow definitions, executes git operations (commit, tag, push) |
-| **Knowledge Base (KB)** | System | Confidentia knowledge base with changelogs and documentation | VWMP creates detailed changelogs, updates main changelog, auto-updates Kanban docs |
+| **Knowledge Base (KB)** | System | Project knowledge base with changelogs and documentation | VWMP creates detailed changelogs, updates main changelog, auto-updates Kanban docs |
 | **Kanban Board** | System | Project management board (Trello/synced via Epic 18) | VWMP auto-updates epic/story metadata, updates Kanban board entries |
-| **Version File** | System | Project version file (`src/confidentia/version.py`) | VWMP reads current version, bumps version for releases |
+| **Version File** | System | Project version file (`VERSION`) | VWMP reads current version, bumps version for releases |
 | **README.md** | System | Project README file | VWMP updates version badge and latest release callout (optional) |
 | **Validator Scripts** | System | Python validation scripts (`validate_branch_context.py`, `validate_changelog_format.py`) | VWMP executes validators before commits, handles validation errors |
 | **File System** | System | Local file system for workflow definitions and execution artifacts | VWMP stores workflow definitions (YAML/JSON), execution history, logs |
@@ -150,9 +150,9 @@ The Visual Workflow Management Platform (VWMP) provides a visual, intuitive inte
 
 ## 7. Open Questions
 
-1. **Authentication:** How do users authenticate? Django auth or separate auth system?
+1. **Authentication:** How do users authenticate? Authentication or separate auth system?
 2. **Multi-tenancy:** Will VWMP support multiple projects/workspaces?
-3. **Cloud Deployment:** Will VWMP be deployable as standalone service or only integrated with Confidentia?
+3. **Cloud Deployment:** Will VWMP be deployable as standalone service or only integrated with parent project?
 4. **Workflow Sharing:** Can workflows be shared across projects or organizations?
 
 ---

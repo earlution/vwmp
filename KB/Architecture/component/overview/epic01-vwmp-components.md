@@ -25,9 +25,9 @@ This document decomposes the VWMP platform into major components aligned with th
 | **StepPalette** | Visual Designer | Available step types display, search and filter, step descriptions, drag-to-canvas functionality | React/Vue component with plugin registry integration |
 | **WorkflowPreview** | Visual Designer | Visual workflow representation, execution order preview, parameter summary, validation status | React/Vue component |
 | **ExecutionMonitor** | Visual Designer | Real-time step status updates, progress bars, log streaming, error display, execution history | React/Vue component + WebSocket client |
-| **WorkflowController** | API Layer | Workflow CRUD operations, parameter validation, execution request handling, status endpoint management | Django REST Framework ViewSet |
-| **ExecutionController** | API Layer | Execution control (start, stop, pause), status streaming, WebSocket connection management | Django REST Framework + Django Channels |
-| **WebSocketHandler** | API Layer | Real-time status updates, log streaming, execution events, connection management | Django Channels consumer |
+| **WorkflowController** | API Layer | Workflow CRUD operations, parameter validation, execution request handling, status endpoint management | FastAPI Router |
+| **ExecutionController** | API Layer | Execution control (start, stop, pause), status streaming, WebSocket connection management | FastAPI + WebSocket |
+| **WebSocketHandler** | API Layer | Real-time status updates, log streaming, execution events, connection management | FastAPI WebSocket endpoint |
 | **WorkflowParser** | Execution Engine | Parse YAML/JSON workflow definitions, validate schema, check syntax errors | Framework-agnostic Python module |
 | **WorkflowValidator** | Execution Engine | Validate workflow structure, check dependencies (no cycles), validate parameter schemas, validate handler references | Framework-agnostic Python module |
 | **StepOrchestrator** | Execution Engine | Resolve execution order (topological sort), execute steps in parallel when possible, manage step state, collect step outputs | Framework-agnostic Python module |
@@ -44,8 +44,8 @@ This document decomposes the VWMP platform into major components aligned with th
 | **GitCommitHandler** | Git Plugin | Create git commit with version number in message | Implements StepHandler |
 | **GitTagHandler** | Git Plugin | Create annotated git tag, validate tag name | Implements StepHandler |
 | **GitPushHandler** | Git Plugin | Push commits and tags to remote, handle authentication | Implements StepHandler |
-| **KanbanUpdateHandler** | Confidentia Plugin | Auto-update Kanban documentation (epic/story docs, board entries) | Implements StepHandler, uses update_kanban_docs.py |
-| **ValidatorExecutionHandler** | Confidentia Plugin | Execute validator scripts (branch context, changelog format), handle validation errors | Implements StepHandler |
+| **KanbanUpdateHandler** | Project Plugin | Auto-update Kanban documentation (epic/story docs, board entries) | Implements StepHandler, uses update_kanban_docs.py |
+| **ValidatorExecutionHandler** | Project Plugin | Execute validator scripts (branch context, changelog format), handle validation errors | Implements StepHandler |
 | **WorkflowDefinitionStore** | Storage | Persist workflow definitions (YAML/JSON), version history, workflow metadata | File-based or database |
 | **ExecutionHistoryStore** | Storage | Store execution history, step results, execution logs, metrics | File-based or database (PostgreSQL) |
 | **ConfigurationStore** | Storage | Store workflow configurations, user preferences, plugin settings | File-based (JSON/YAML) |
@@ -103,7 +103,7 @@ See the component diagram for visual layout.
 ### API Layer (Backend)
 - **Components:** WorkflowController, ExecutionController, WebSocketHandler
 - **Responsibilities:** HTTP request handling, WebSocket management, authentication, authorization
-- **Technology:** Django REST Framework, Django Channels
+- **Technology:** FastAPI, WebSocket
 - **Communication:** REST API, WebSocket
 
 ### Execution Engine Layer (Core)

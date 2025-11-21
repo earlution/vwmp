@@ -66,7 +66,7 @@ Implement actual workflows in the VWMP platform using the visual designer. This 
 - ✅ Workflow execution tested end-to-end with real Kanban documentation
 
 **Implementation Details:**
-- **Kanban Plugin:** `src/confidentia/vwmp/plugins/kanban/` - Plugin implementation with 6 step handlers
+- **Kanban Plugin:** `src/vwmp/vwmp/plugins/kanban/` - Plugin implementation with 6 step handlers
 - **Workflow Definition:** `workflows/kanban-review-workflow.yaml` - Complete workflow definition
 - **Findings Report:** `kanban_review_findings.json` - Generated findings with recommendations
 - **Visual Designer:** `/vwmp/designer/<workflow-id>/` - Visual designer with workflow type badges
@@ -75,7 +75,7 @@ Implement actual workflows in the VWMP platform using the visual designer. This 
 ---
 
 **Original Planned Tasks:**
-1. ✅ Created Django management command `import_workflow` to import existing YAML workflows into VWMP storage
+1. ✅ Created Management command `import_workflow` to import existing YAML workflows into VWMP storage
 2. ✅ Imported release workflow definition (`workflows/release-workflow.yaml`) into VWMP storage
 3. ✅ Verified workflow configuration includes all steps (version bump, changelog, README, Kanban, Git operations, validators)
 4. ✅ Confirmed step dependencies and execution order are correctly configured
@@ -195,7 +195,7 @@ Implement actual workflows in the VWMP platform using the visual designer. This 
 - **Kanban Structure:** `KB/PM_and_Portfolio/epics/overview/`, `KB/PM_and_Portfolio/stories/overview/`
 - **Release Workflow Tutorial:** `KB/Documentation/Developer_Docs/vwmp/tutorial-release-workflow.md` - Step-by-step guide for building Release Workflow from scratch (used as reference pattern for Kanban Review workflow)
 - **Kanban Review Workflow:** `workflows/kanban-review-workflow.yaml` - Complete Kanban Review workflow definition
-- **Kanban Plugin:** `src/confidentia/vwmp/plugins/kanban/` - Plugin implementation with 6 step handlers
+- **Kanban Plugin:** `src/vwmp/vwmp/plugins/kanban/` - Plugin implementation with 6 step handlers
 - **Findings Report:** `kanban_review_findings.json` - Generated findings report with actionable recommendations
 
 ---
@@ -236,9 +236,9 @@ Implement actual workflows in the VWMP platform using the visual designer. This 
 ## Notes & References
 
 ### Epic & Planning Documents
-- **[Epic 01 Overview](../../../epics/overview/Epic%2021/Epic-21.md)** - Complete epic overview with goals, stories, and status
-- **[Development Engagement Plan](../../../epics/overview/Epic%2021/Epic-21-Development-Plan.md)** - Full development plan with all phases
-- **[Phase 2 Implementation Plan](../../../epics/overview/Epic%2021/Epic-21-Phase-2-Plan.md)** - Visual designer implementation plan
+- **[Epic 01 Overview](../../../epics/overview/Epic%2001/Epic-01.md)** - Complete epic overview with goals, stories, and status
+- **[Development Engagement Plan](../../../epics/overview/Epic%2001/Epic-01-Development-Plan.md)** - Full development plan with all phases
+- **[Phase 2 Implementation Plan](../../../epics/overview/Epic%2001/Epic-01-Phase-2-Plan.md)** - Visual designer implementation plan
 
 ### Architecture Documentation
 - **[Platform Architecture](../../../../Architecture/Standards_and_ADRs/E01-vwmp-platform-architecture.md)** - High-level platform architecture
@@ -248,11 +248,11 @@ Implement actual workflows in the VWMP platform using the visual designer. This 
 ### Implementation References
 - **Existing Release Workflow:** `workflows/release-workflow.yaml` - Current release workflow definition
 - **Imported Workflow:** `workflows/workflows/<workflow-id>-Release_Workflow.yaml` - VWMP-stored workflow
-- **Management Command:** `src/confidentia_django/vwmp/management/commands/import_workflow.py` - Import command
+- **Management Command:** `src/vwmp_web/vwmp/management/commands/import_workflow.py` - Import command
 - **Usage Documentation:** `KB/Documentation/Developer_Docs/vwmp/release-workflow-usage.md` - Comprehensive usage guide
 - **Legacy Release Script:** `scripts/automation/release_workflow.py` - Original CLI-based release workflow
 - **Visual Designer:** http://localhost:8000/vwmp/designer/ - Visual workflow designer interface
-- **Release Workflow Plugin:** `src/confidentia/vwmp/plugins/release/` - Release workflow plugin implementation
+- **Release Workflow Plugin:** `src/vwmp/vwmp/plugins/release/` - Release workflow plugin implementation
 
 ### Related Stories
 - **Story 1 (Phase 1):** [Visual Workflow Management Platform](./Story-1-Visual-Workflow-Management-Platform.md) - ✅ COMPLETE - Backend infrastructure

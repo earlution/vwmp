@@ -169,7 +169,7 @@ Findings are saved under the key `template_divergences`:
 {
   "template_divergences": [
     {
-      "file": "KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-21.md",
+      "file": "KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-01.md",
       "type": "epic",
       "missing_sections": ["summary", "naming_convention"],
       "extra_sections": []
@@ -332,7 +332,7 @@ Findings are saved under the keys `repetitions` and `contradictions`:
   "contradictions": [
     {
       "type": "status_mismatch",
-      "files": ["Epic-21.md"],
+      "files": ["Epic-01.md"],
       "details": "Epic 01 status is 'IN PROGRESS' but all stories are 'COMPLETE'"
     }
   ]
@@ -407,7 +407,7 @@ Findings are saved under the key `coverage_gaps`:
 {
   "coverage_gaps": [
     {
-      "file": "KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-21.md",
+      "file": "KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-01.md",
       "type": "missing_section",
       "section": "Summary",
       "description": "Missing required Summary section",
@@ -495,7 +495,7 @@ When `auto_apply` is `true`, applied fixes are saved under the key `applied_fixe
 {
   "applied_fixes": [
     {
-      "file": "KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-21.md",
+      "file": "KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-01.md",
       "type": "add_section",
       "section": "Summary",
       "status": "applied"

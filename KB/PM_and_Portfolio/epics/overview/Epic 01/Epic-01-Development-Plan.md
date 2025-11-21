@@ -127,7 +127,7 @@ This document outlines the development engagement plan for Epic 01: Visual Workf
 9. **T009: Release Workflow Adapter** (40-60 hours)
    - Define release workflow type
    - Implement step handlers for release steps (version bump, changelog, etc.)
-   - Build Confidentia-specific integrations (KB, Kanban) as plugin
+   - Build Project-specific integrations (KB, Kanban) as plugin
    - Integrate with existing release workflow script
    - **Deliverable:** Release workflow plugin/adapter
 
@@ -154,11 +154,11 @@ This document outlines the development engagement plan for Epic 01: Visual Workf
 **Frontend/UI:**
 - Options: React, Vue.js, Vanilla JS + Chart.js (already approved)
 - Recommendation: **React** or **Vue.js** for component-based architecture
-- Must integrate with Django templates (or separate SPA)
+- Must integrate with Web templates (or separate SPA)
 
 **Backend Integration:**
 - Python-based (matches existing stack)
-- Django app or standalone service
+- FastAPI service or standalone service
 - RESTful API for frontend-backend communication
 
 **Data Storage:**
@@ -279,10 +279,10 @@ Based on task dependencies, these tasks can be developed in parallel:
 ### Current Implementation:
 - `scripts/automation/release_workflow.py` - Existing CLI release workflow
 - `scripts/automation/update_kanban_docs.py` - Kanban integration
-- Django app structure in `src/confidentia_django/`
+- FastAPI service structure in `src/vwmp_web/`
 
 ### Documentation:
-- Epic 01 Overview: `KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-21.md`
+- Epic 01 Overview: `KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-01.md`
 - Story 1 Details: `KB/PM_and_Portfolio/stories/overview/Epic 01/Story-1-Visual-Workflow-Management-Platform.md`
 - Evaluation Report: `KB/PM_and_Portfolio/stories/overview/Epic 20/Story-10-Recommendation-Report.md`
 - Release Requirements: `KB/PM_and_Portfolio/stories/overview/Epic 20/Story-10-Release-Requirements.md`

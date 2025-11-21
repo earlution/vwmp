@@ -82,9 +82,9 @@ vwmp-docs/
 ### Project Management Documentation (7 files)
 
 #### Epic 01 Documentation (3 files)
-1. `Epic-21.md` - Main Epic 01 documentation
-2. `Epic-21-Development-Plan.md` - Development plan
-3. `Epic-21-Phase-2-Plan.md` - Phase 2 plan
+1. `Epic-01.md` - Main Epic 01 documentation
+2. `Epic-01-Development-Plan.md` - Development plan
+3. `Epic-01-Phase-2-Plan.md` - Phase 2 plan
 
 #### Story Documentation (4 files)
 1. `Story-1-Visual-Workflow-Management-Platform.md` - Story 1: Core platform
@@ -138,7 +138,7 @@ All documentation was copied from:
 
 ## Next Steps for Spin-Off
 
-1. Review all documentation for any Confidentia-specific references
+1. Review all documentation for any project-specific references
 2. Update file paths and internal references for standalone project
 3. Remove `E01-` prefix from architecture documents
 4. Create README.md for GitHub repository

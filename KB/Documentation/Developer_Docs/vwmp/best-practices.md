@@ -123,7 +123,7 @@ Step 1 → Step 2 → Step 3 → Step 4
 **Example:**
 ```yaml
 config:
-  version_file: src/confidentia/version.py
+  version_file: VERSION
   changelog_dir: KB/Changelog_and_Release_Notes/Changelog_Archive
 
 steps:

@@ -44,7 +44,7 @@ type: release
 description: Automated release workflow
 
 config:
-  version_file: src/confidentia/version.py
+  version_file: VERSION
   changelog_dir: KB/Changelog_and_Release_Notes/Changelog_Archive
   main_changelog: CHANGELOG.md
 ```
@@ -90,7 +90,7 @@ config:
   handler: release.version_bump
   config:
     increment_type: minor  # Increment minor version
-    version_file: src/confidentia/version.py
+    version_file: VERSION
     reset_build: true  # Reset build metadata when incrementing patch
 ```
 
@@ -218,7 +218,7 @@ config:
 - id: step-5
   name: Auto-update Kanban Docs
   type: kanban_update
-  handler: confidentia.kanban_update
+  handler: vwmp.kanban_update
   required: false
   automatic: true
   dependencies:
@@ -232,7 +232,7 @@ config:
 ```yaml
 - id: step-5
   name: Auto-update Kanban Docs
-  handler: confidentia.kanban_update
+  handler: vwmp.kanban_update
   config:
     epic_doc_pattern: KB/PM_and_Portfolio/epics/overview/Epic {epic}/Epic-{epic}.md
     kanban_board: KB/PM_and_Portfolio/epics/overview/_index.md
@@ -297,7 +297,7 @@ config:
 - id: step-7
   name: Run Validators
   type: validation
-  handler: confidentia.run_validators
+  handler: vwmp.run_validators
   required: true
   dependencies:
     - step-6
@@ -312,7 +312,7 @@ config:
 ```yaml
 - id: step-7
   name: Run Validators
-  handler: confidentia.run_validators
+  handler: vwmp.run_validators
   config:
     validators:
       - scripts/validation/validate_branch_context.py
@@ -678,7 +678,7 @@ config:
 **In Step Configuration:**
 ```yaml
 config:
-  version_file: src/confidentia/version.py
+  version_file: VERSION
 
 steps:
   - name: Bump Version
@@ -689,7 +689,7 @@ steps:
 **Multiple Config Variables:**
 ```yaml
 config:
-  version_file: src/confidentia/version.py
+  version_file: VERSION
   changelog_dir: KB/Changelog_and_Release_Notes/Changelog_Archive
   main_changelog: CHANGELOG.md
 
@@ -743,7 +743,7 @@ type: release
 description: Simplified release workflow
 
 config:
-  version_file: src/confidentia/version.py
+  version_file: VERSION
   changelog_dir: KB/Changelog_and_Release_Notes/Changelog_Archive
 
 steps:

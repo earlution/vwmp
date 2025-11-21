@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.0+4] - 2025-11-21
+
+### Changed
+- Updated all documentation references project-wide to be contextualized to vwmp project
+- Removed all Confidentia references from documentation
+- Updated file paths: `src/confidentia/` → `src/vwmp/`, `src/confidentia_django/` → `src/vwmp_web/`
+- Updated handler names: `confidentia.*` → `vwmp.*`
+- Updated GitHub repository links: `github.com/earlution/confidentia` → `github.com/earlution/vwmp`
+- Updated Epic references: `Epic-21` → `Epic-01`
+- Removed Django references except in tech stack evaluation documents
+- Updated framework references: Django → FastAPI (except in evaluation contexts)
+- Updated main README with KB documentation section and links
+
 ## [0.0.0+3] - 2025-11-21
 
 ### Added
@@ -48,7 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT License
 - Git repository setup
 
-[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+3...HEAD
+[Unreleased]: https://github.com/earlution/vwmp/compare/v0.0.0+4...HEAD
+[0.0.0+4]: https://github.com/earlution/vwmp/compare/v0.0.0+3...v0.0.0+4
 [0.0.0+3]: https://github.com/earlution/vwmp/compare/v0.0.0+2...v0.0.0+3
 [0.0.0+2]: https://github.com/earlution/vwmp/compare/v0.0.0+1...v0.0.0+2
 [0.0.0+1]: https://github.com/earlution/vwmp/compare/v0.0.0+0...v0.0.0+1

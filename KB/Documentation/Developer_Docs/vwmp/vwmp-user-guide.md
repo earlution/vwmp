@@ -22,7 +22,7 @@ This guide provides comprehensive instructions for using the Visual Workflow Man
 
 ### Accessing VWMP
 
-1. **Start the Django development server:**
+1. **Start the FastAPI development server:**
    ```bash
    python manage.py runserver
    ```
@@ -118,7 +118,7 @@ The visual designer (`/vwmp/designer/`) is the main interface for creating and e
    - Description (optional)
 3. **Add workflow configuration** (optional):
    - Define config variables used across steps
-   - Example: `version_file: src/confidentia/version.py`
+   - Example: `version_file: VERSION`
 4. **Start adding steps** from the palette
 
 ### Adding Steps to Your Workflow
@@ -553,7 +553,7 @@ GET /api/vwmp/step-handlers/<handler-path>/schema/
 
 **Authentication:**
 - API endpoints require authentication
-- Use Django's authentication system
+- Use Authentication system
 - Include credentials in API requests
 
 ### Command-Line Integration

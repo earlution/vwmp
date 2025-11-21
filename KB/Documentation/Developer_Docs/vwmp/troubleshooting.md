@@ -69,7 +69,7 @@ Before diving into specific issues, try these quick checks:
    - Format: `plugin.handler_name` (e.g., `release.version_bump`)
    - Must match registered handler path
 2. **Verify handler exists** in plugin registry:
-   - Check `src/confidentia/vwmp/plugins/registry.py`
+   - Check `src/vwmp/plugins/registry.py`
    - Ensure handler is registered
 3. **Check handler import** - ensure handler class is imported
 4. **Review step configuration** - verify handler path matches plugin structure
@@ -165,7 +165,7 @@ config:
 
 # After (fixed):
 config:
-  version_file: src/confidentia/version.py  # ✅ Path from workspace root
+  version_file: VERSION  # ✅ Path from workspace root
 ```
 
 ---
@@ -191,10 +191,10 @@ config:
 **Example Fix:**
 ```bash
 # Check permissions
-ls -l src/confidentia/version.py
+ls -l VERSION
 
 # Fix permissions if needed
-chmod 644 src/confidentia/version.py
+chmod 644 VERSION
 chmod 755 workflows/
 ```
 
@@ -478,7 +478,7 @@ config:
 - Cannot execute workflows
 
 **Solutions:**
-1. **Log in to Django** - ensure you're authenticated
+1. **Log in to FastAPI** - ensure you're authenticated
 2. **Check session** - verify session is valid
 3. **Refresh login** - log out and log back in
 4. **Check authentication middleware** - ensure middleware is configured
@@ -545,8 +545,8 @@ config:
 ### Debug Mode
 
 **Enable debug logging:**
-- Check Django logs: `logs/django.log`
-- Enable DEBUG mode in Django settings
+- Check FastAPI logs: `logs/fastapi.log`
+- Enable DEBUG mode in FastAPI settings
 - Review step handler logs
 - Check browser console for frontend errors
 
@@ -617,7 +617,7 @@ When reporting issues, include:
 2. **Steps to reproduce** - how to trigger the issue
 3. **Workflow configuration** - workflow YAML (sanitized)
 4. **Execution logs** - relevant log excerpts
-5. **Environment** - Python version, Django version, OS
+5. **Environment** - Python version, FastAPI version, OS
 6. **Browser** - if UI issue (browser, version)
 
 ### Where to Report

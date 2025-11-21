@@ -283,7 +283,7 @@ sequenceDiagram
     participant FS as File System
     participant Plugin1 as Release Plugin
     participant Plugin2 as Git Plugin
-    participant Plugin3 as Confidentia Plugin
+    participant Plugin3 as Project Integration Plugin
 
     App->>Registry: Initialize plugin registry
     Registry->>FS: Scan plugins/ directory
@@ -308,10 +308,10 @@ sequenceDiagram
     Plugin2->>Registry: Register StepHandler (git.create_tag)
     Plugin2->>Registry: Register StepHandler (git.push)
 
-    Note over Registry,Plugin3: Load Confidentia Plugin
-    Registry->>Plugin3: Import confidentia.plugin
-    Plugin3->>Registry: Register StepHandler (confidentia.kanban_update)
-    Plugin3->>Registry: Register StepHandler (confidentia.run_validators)
+    Note over Registry,Plugin3: Load Project Integration Plugin
+    Registry->>Plugin3: Import vwmp.plugin
+    Plugin3->>Registry: Register StepHandler (vwmp.kanban_update)
+    Plugin3->>Registry: Register StepHandler (vwmp.run_validators)
 
     Registry->>Registry: Build handler registry map
     Registry->>App: Plugin registry initialized

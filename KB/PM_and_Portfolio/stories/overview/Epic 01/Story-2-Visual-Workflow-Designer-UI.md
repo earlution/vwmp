@@ -83,9 +83,9 @@ Build the **visual drag-and-drop workflow designer interface** to complete the V
 - Node connections support
 
 **Related Files:**
-- `src/confidentia_django/vwmp/templates/vwmp/designer.html` - Visual designer template
-- `src/confidentia_django/vwmp/views.py` - Designer view function
-- `src/confidentia_django/vwmp/urls.py` - Designer URL routes
+- `src/vwmp_web/vwmp/templates/vwmp/designer.html` - Visual designer template
+- `src/vwmp_web/vwmp/views.py` - Designer view function
+- `src/vwmp_web/vwmp/urls.py` - Designer URL routes
 
 ---
 
@@ -266,9 +266,9 @@ Build the **visual drag-and-drop workflow designer interface** to complete the V
 ## Notes & References
 
 ### Epic & Planning Documents
-- **[Epic 01 Overview](../../../epics/overview/Epic%2021/Epic-21.md)** - Complete epic overview with goals, stories, and status
-- **[Phase 2 Implementation Plan](../../../epics/overview/Epic%2021/Epic-21-Phase-2-Plan.md)** - Detailed frontend visual designer implementation plan (52-98 hours)
-- **[Development Engagement Plan](../../../epics/overview/Epic%2021/Epic-21-Development-Plan.md)** - Full development plan with all phases
+- **[Epic 01 Overview](../../../epics/overview/Epic%2001/Epic-01.md)** - Complete epic overview with goals, stories, and status
+- **[Phase 2 Implementation Plan](../../../epics/overview/Epic%2001/Epic-01-Phase-2-Plan.md)** - Detailed frontend visual designer implementation plan (52-98 hours)
+- **[Development Engagement Plan](../../../epics/overview/Epic%2001/Epic-01-Development-Plan.md)** - Full development plan with all phases
 
 ### Architecture Documentation
 - **[Visual Designer UI/UX Design](../../../../Architecture/Standards_and_ADRs/E01-vwmp-visual-designer-uiux.md)** - UI/UX design document (T003 deliverable)
@@ -282,8 +282,8 @@ Build the **visual drag-and-drop workflow designer interface** to complete the V
 
 ### Implementation References
 - **[React Flow Documentation](https://reactflow.dev/)** - Official React Flow docs and examples
-- **Django REST API:** `/api/vwmp/workflows/` - Backend API endpoints
-- **Designer Template:** `src/confidentia_django/vwmp/templates/vwmp/designer.html`
+- **FastAPI REST API:** `/api/vwmp/workflows/` - Backend API endpoints
+- **Designer Template:** `src/vwmp_web/vwmp/templates/vwmp/designer.html`
 
 ### Related Stories
 - **Story 1 (Phase 1):** [Visual Workflow Management Platform](./Story-1-Visual-Workflow-Management-Platform.md) - ✅ COMPLETE - Backend infrastructure

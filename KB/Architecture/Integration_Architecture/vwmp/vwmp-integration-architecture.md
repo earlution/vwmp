@@ -25,7 +25,7 @@ graph TB
     subgraph "Workflow Plugins"
         Release[Release Workflow Plugin]
         Git[Git Integration Plugin]
-        Confidentia[Confidentia Integration Plugin]
+        Project Integration[Project Integration Integration Plugin]
         Future[Future Workflow Types]
     end
 
@@ -34,7 +34,7 @@ graph TB
         KB[Knowledge Base KB/]
         Kanban[Kanban Board Trello/MCP]
         Validators[Validator Scripts]
-        VersionFile[Version File src/confidentia/version.py]
+        VersionFile[Version File VERSION]
         README[README.md]
         Changelog[CHANGELOG.md]
         FS[File System]
@@ -51,7 +51,7 @@ graph TB
     Engine -->|Load plugins| Registry
     Registry -->|Provide handlers| Release
     Registry -->|Provide handlers| Git
-    Registry -->|Provide handlers| Confidentia
+    Registry -->|Provide handlers| Project Integration
     Registry -->|Provide handlers| Future
 
     %% Release workflow integrations
@@ -67,10 +67,10 @@ graph TB
     Git -->|Stage files| FS
     Git -->|Commit/Tag/Push| GitRepo
 
-    %% Confidentia plugin integrations
-    Confidentia -->|Execute scripts| Validators
-    Confidentia -->|Update docs| KB
-    Confidentia -->|Update board| Kanban
+    %% Project Integration plugin integrations
+    Project Integration -->|Execute scripts| Validators
+    Project Integration -->|Update docs| KB
+    Project Integration -->|Update board| Kanban
 
     %% Storage
     API -->|Store/Retrieve| WorkflowStorage
@@ -84,7 +84,7 @@ graph TB
     classDef storage fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
 
     class UI,API,Engine,Registry vwmp
-    class Release,Git,Confidentia,Future plugin
+    class Release,Git,Project Integration,Future plugin
     class GitRepo,KB,Kanban,Validators,VersionFile,README,Changelog,FS external
     class WorkflowStorage,ExecHistory storage
 ```
@@ -103,7 +103,7 @@ sequenceDiagram
     participant Engine as Execution Engine
     participant Release as Release Plugin
     participant Git as Git Plugin
-    participant Confidentia as Confidentia Plugin
+    participant Project Integration as Project Integration Plugin
     participant VersionFile as Version File
     participant KB as Knowledge Base
     participant Kanban as Kanban Board
@@ -136,11 +136,11 @@ sequenceDiagram
     Release-->>Engine: StepResult (success)
 
     Note over Engine,Kanban: Step 5: Auto-update Kanban
-    Engine->>Confidentia: Execute kanban_update step
-    Confidentia->>Kanban: Update epic/story docs
-    Confidentia->>Kanban: Update Kanban board entry
-    Kanban-->>Confidentia: Updated
-    Confidentia-->>Engine: StepResult (success)
+    Engine->>Project Integration: Execute kanban_update step
+    Project Integration->>Kanban: Update epic/story docs
+    Project Integration->>Kanban: Update Kanban board entry
+    Kanban-->>Project Integration: Updated
+    Project Integration-->>Engine: StepResult (success)
 
     Note over Engine,GitRepo: Step 6: Stage Files
     Engine->>Git: Execute stage_all step
@@ -149,12 +149,12 @@ sequenceDiagram
     Git-->>Engine: StepResult (success)
 
     Note over Engine,Validators: Step 7: Run Validators
-    Engine->>Confidentia: Execute run_validators step
-    Confidentia->>Validators: Execute validate_branch_context.py
-    Validators-->>Confidentia: Validation passed
-    Confidentia->>Validators: Execute validate_changelog_format.py
-    Validators-->>Confidentia: Validation passed
-    Confidentia-->>Engine: StepResult (success)
+    Engine->>Project Integration: Execute run_validators step
+    Project Integration->>Validators: Execute validate_branch_context.py
+    Validators-->>Project Integration: Validation passed
+    Project Integration->>Validators: Execute validate_changelog_format.py
+    Validators-->>Project Integration: Validation passed
+    Project Integration-->>Engine: StepResult (success)
 
     Note over Engine,GitRepo: Step 8: Commit
     Engine->>Git: Execute commit step
@@ -248,7 +248,7 @@ sequenceDiagram
 
 **Method:** Via Epic 18 MCP integration (Trello sync) or direct file updates
 
-**Handler:** `ConfidentiaPlugin` kanban handler
+**Handler:** `Project IntegrationPlugin` kanban handler
 
 **Data Flow:**
 - Input: Branch name, version, summary
@@ -277,7 +277,7 @@ sequenceDiagram
 
 **Method:** Subprocess execution of Python validation scripts
 
-**Handler:** `ConfidentiaPlugin` validator handler
+**Handler:** `Project IntegrationPlugin` validator handler
 
 **Data Flow:**
 - Input: Validator script paths, strict mode flag
@@ -314,7 +314,7 @@ sequenceDiagram
 - Error Handling: Validate version format, handle file read/write errors
 
 **Integration Points:**
-- `VersionBumpHandler`: Reads/writes `src/confidentia/version.py`
+- `VersionBumpHandler`: Reads/writes `VERSION`
 
 **Version Format:**
 - Schema: `x.X.x.x` (Major.FeatureSet.Feature.Patch)
@@ -343,7 +343,7 @@ sequenceDiagram
 **Example:**
 ```python
 def update_version_file(new_version: str) -> None:
-    version_file = Path("src/confidentia/version.py")
+    version_file = Path("VERSION")
     content = version_file.read_text()
     content = re.sub(r'__version__\s*=\s*["\'][^"\']+["\']',
                      f'__version__ = "{new_version}"',

@@ -42,14 +42,14 @@ These variables are defined at the workflow level and can be referenced in any s
 
 ```yaml
 config:
-  version_file: src/confidentia/version.py
+  version_file: VERSION
   changelog_dir: KB/Changelog_and_Release_Notes/Changelog_Archive
   main_changelog: CHANGELOG.md
 ```
 
 **Usage in steps:**
 - Reference these variables using `${config.variable_name}`
-- Example: `${config.version_file}` resolves to `src/confidentia/version.py`
+- Example: `${config.version_file}` resolves to `VERSION`
 - This allows easy reconfiguration without changing individual step configs
 
 ---
@@ -79,7 +79,7 @@ Increments the version number in the version file. This is typically the first s
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `version_file` | string | ✅ Yes | - | Path to version file relative to workspace root (e.g., `src/confidentia/version.py`) |
+| `version_file` | string | ✅ Yes | - | Path to version file relative to workspace root (e.g., `VERSION`) |
 | `increment_type` | enum | ❌ No | `patch` | How to increment the version |
 
 #### `increment_type` Options
@@ -346,7 +346,7 @@ config:
 
 1. **Version Badge Update:**
    - Finds badge pattern: `[![Version]...badge/version-...-blue](.../releases)`
-   - Replaces with: `[![Version](https://img.shields.io/badge/version-0.21.0.2-blue)](https://github.com/earlution/confidentia/releases)`
+   - Replaces with: `[![Version](https://img.shields.io/badge/version-0.21.0.2-blue)](https://github.com/earlution/vwmp/releases)`
 
 2. **Latest Release Update:**
    - Finds pattern: `**🎉 Latest Release: v...**`
@@ -379,7 +379,7 @@ After execution, this step outputs:
 
 ### Step 5: Auto-update Kanban Docs
 
-**Handler:** `confidentia.kanban_update`
+**Handler:** `vwmp.kanban_update`
 **Category:** Documentation
 **Icon:** 📊
 **Required:** ❌ No (optional step)
@@ -424,7 +424,7 @@ The `epic_doc_pattern` supports variable substitution:
 - Branch: `epic/21-workflow-platform`
 - Epic extracted: `21`
 - Pattern: `KB/PM_and_Portfolio/epics/overview/Epic {epic}/Epic-{epic}.md`
-- Resolved: `KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-21.md`
+- Resolved: `KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-01.md`
 
 #### What Gets Updated
 
@@ -454,7 +454,7 @@ After execution, this step outputs:
 
 ```json
 {
-  "epic_doc": "KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-21.md",
+  "epic_doc": "KB/PM_and_Portfolio/epics/overview/Epic 01/Epic-01.md",
   "tasks_updated": 1,
   "version": "0.21.0.2"
 }
@@ -507,7 +507,7 @@ config:
   paths:
     - "README.md"
     - "CHANGELOG.md"
-    - "src/confidentia/version.py"
+    - "VERSION"
 ```
 
 #### Why Multiple Dependencies?
@@ -540,7 +540,7 @@ After execution, this step outputs:
 
 ### Step 7: Run Validators
 
-**Handler:** `confidentia.run_validators`
+**Handler:** `vwmp.run_validators`
 **Category:** Validation
 **Icon:** ✅
 **Required:** ✅ Yes

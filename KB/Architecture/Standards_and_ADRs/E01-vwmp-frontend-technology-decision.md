@@ -28,7 +28,7 @@
 - ✅ Excellent documentation and community support
 - ✅ Built specifically for node-based visual editors
 - ✅ Supports drag-and-drop, zoom, pan, mini-map out of the box
-- ✅ Easy to integrate with Django REST API via `fetch()`
+- ✅ Easy to integrate with FastAPI REST API via `fetch()`
 - ✅ Can start with CDN (no build pipeline needed initially)
 - ✅ Large ecosystem of React components and libraries
 - ✅ Good TypeScript support (for future migration)
@@ -135,7 +135,7 @@
 
 4. **Standalone Deployment Support:**
    - React + React Flow can be deployed as standalone SPA
-   - Works with any REST API backend (not tied to Django)
+   - Works with any REST API backend (not tied to FastAPI)
    - Easy to migrate from CDN to npm/Vite for production
    - **Aligns with spin-off objective** - easy to extract frontend
 
@@ -199,18 +199,18 @@
 
 ---
 
-## Integration with Django
+## Integration with FastAPI
 
 ### Approach
-1. **Django Template:** Base template with React/React Flow CDN scripts
+1. **FastAPI Template:** Base template with React/React Flow CDN scripts
 2. **React Components:** Inline JSX with Babel Standalone, or separate `.js` files
-3. **API Integration:** Use `fetch()` API to connect to Django REST API
-4. **CSRF Protection:** Include Django CSRF token in API requests
-5. **Static Files:** Serve component JS files via Django staticfiles if needed
+3. **API Integration:** Use `fetch()` API to connect to FastAPI REST API
+4. **CSRF Protection:** Include FastAPI CSRF token in API requests
+5. **Static Files:** Serve component JS files via FastAPI staticfiles if needed
 
 ### Example Structure
 ```
-src/confidentia_django/vwmp/
+src/vwmp_web/vwmp/
 ├── templates/
 │   └── vwmp/
 │       ├── dashboard.html (existing)
@@ -231,7 +231,7 @@ src/confidentia_django/vwmp/
 ### Low Risk ✅
 - React Flow is mature and stable
 - CDN approach is well-supported
-- Django + React integration is common pattern
+- FastAPI + React integration is common pattern
 
 ### Mitigation
 - Start with CDN for rapid prototyping
@@ -254,7 +254,7 @@ src/confidentia_django/vwmp/
 
 1. ✅ Document technology decision (this document)
 2. Create initial React + React Flow integration
-3. Set up Django template with CDN scripts
+3. Set up FastAPI template with CDN scripts
 4. Create basic canvas component
 5. Test in browser
 6. Proceed to Phase 2.2: Visual Canvas Foundation
@@ -266,7 +266,7 @@ src/confidentia_django/vwmp/
 - [React Documentation](https://react.dev/)
 - [React Flow Documentation](https://reactflow.dev/)
 - [React Flow Examples](https://reactflow.dev/examples/)
-- [Django Static Files](https://docs.djangoproject.com/en/5.2/howto/static-files/)
+- [FastAPI Static Files](https://fastapi.tiangolo.com/en/5.2/howto/static-files/)
 - [Babel Standalone](https://babeljs.io/docs/en/babel-standalone)
 
 ---

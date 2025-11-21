@@ -66,8 +66,8 @@ vwmp/
 **Status:** Not Started
 
 **Tasks:**
-1. **Move Confidentia Handlers** ⏳
-   - Move `KanbanUpdateHandler` and `ValidatorExecutionHandler` from `plugins/release/handlers.py` to `plugins/confidentia/handlers.py`
+1. **Move Project Handlers** ⏳
+   - Move `KanbanUpdateHandler` and `ValidatorExecutionHandler` from `plugins/release/handlers.py` to `plugins/project/handlers.py`
    - Update plugin registry imports
    - Update handler registrations
 
@@ -76,8 +76,8 @@ vwmp/
    - Update `KanbanUpdateHandler` to use subprocess with configurable paths
    - Update `ValidatorExecutionHandler` to use configurable validator paths
 
-3. **Improve Confidentia Plugin Isolation** ⏳
-   - Create proper plugin structure in `plugins/confidentia/`
+3. **Improve Project Plugin Isolation** ⏳
+   - Create proper plugin structure in `plugins/project/`
    - Extract Kanban updater logic to separate module
    - Extract validator execution to separate module
 
@@ -94,11 +94,11 @@ vwmp/
 
 **Tasks:**
 1. Create FastAPI application structure
-2. Port Django REST API endpoints to FastAPI
-3. Port WebSocket functionality (Django Channels → FastAPI WebSocket)
+2. Port FastAPI REST API endpoints to FastAPI
+3. Port WebSocket functionality (FastAPI Channels → FastAPI WebSocket)
 4. Update frontend API client
 5. Test end-to-end
-6. Remove Django API layer
+6. Remove FastAPI API layer
 
 **Estimated Effort:** 2-3 weeks
 **Priority:** High (required for lightweightness targets)
@@ -113,7 +113,7 @@ vwmp/
 
 **Tasks:**
 1. **Create Standalone Package Structure**
-   - Create `vwmp/` package (rename from `src/confidentia/vwmp/`)
+   - Create `vwmp/` package (rename from `src/vwmp/`)
    - Move core engine to `vwmp/core/`
    - Move generic plugins to `vwmp/plugins/`
    - Create FastAPI API layer as `vwmp/api/`
@@ -179,7 +179,7 @@ vwmp/
    - User guides
    - API documentation
    - Plugin development guide
-   - Migration guide (from Django to FastAPI)
+   - Migration guide (from FastAPI to FastAPI)
 
 **Estimated Effort:** 1 week
 **Priority:** Medium (important for adoption)
@@ -255,17 +255,17 @@ vwmp/
 
 ### Step 1: Extract Core Engine
 
-**Source:** `src/confidentia/vwmp/core/`
+**Source:** `src/vwmp/core/`
 **Target:** `vwmp/core/`
 
 **Commands:**
 ```bash
 # In standalone repository
 mkdir -p vwmp/core
-cp -r src/confidentia/vwmp/core/* vwmp/core/
+cp -r src/vwmp/core/* vwmp/core/
 
 # Update imports
-# from src.confidentia.vwmp.core import ...
+# from src.vwmp.core import ...
 # → from vwmp.core import ...
 ```
 
@@ -273,18 +273,18 @@ cp -r src/confidentia/vwmp/core/* vwmp/core/
 
 ### Step 2: Extract Generic Plugins
 
-**Source:** `src/confidentia/vwmp/plugins/{git,release,kanban}/`
+**Source:** `src/vwmp/plugins/{git,release,kanban}/`
 **Target:** `vwmp/plugins/{git,release,kanban}/`
 
-**Note:** Extract only generic plugins, exclude Confidentia-specific handlers.
+**Note:** Extract only generic plugins, exclude Project-specific handlers.
 
 **Commands:**
 ```bash
 # Generic plugins only
 mkdir -p vwmp/plugins
-cp -r src/confidentia/vwmp/plugins/git vwmp/plugins/
-cp -r src/confidentia/vwmp/plugins/release vwmp/plugins/  # But exclude Confidentia handlers
-cp -r src/confidentia/vwmp/plugins/kanban vwmp/plugins/  # Review if generic enough
+cp -r src/vwmp/plugins/git vwmp/plugins/
+cp -r src/vwmp/plugins/release vwmp/plugins/  # But exclude Project handlers
+cp -r src/vwmp/plugins/kanban vwmp/plugins/  # Review if generic enough
 ```
 
 ---
@@ -294,13 +294,13 @@ cp -r src/confidentia/vwmp/plugins/kanban vwmp/plugins/  # Review if generic eno
 **Source:** `vwmp/api/` (to be created)
 **Target:** `vwmp/api/`
 
-**Note:** Extract FastAPI API layer after migration from Django.
+**Note:** Extract FastAPI API layer after migration from FastAPI.
 
 ---
 
 ### Step 4: Extract Frontend
 
-**Source:** `src/confidentia_django/vwmp/templates/vwmp/` (React components)
+**Source:** `src/vwmp_web/vwmp/templates/vwmp/` (React components)
 **Target:** `vwmp_frontend/src/`
 
 **Note:** Extract after migration to Vite/npm.
@@ -436,9 +436,9 @@ packages = ["vwmp"]
 **VWMP is ready for spin-off when:**
 
 1. ✅ **Architectural Cleanup Complete**
-   - Confidentia handlers moved to proper location
+   - Project handlers moved to proper location
    - No hardcoded script paths
-   - Confidentia plugin properly isolated
+   - Project plugin properly isolated
 
 2. ✅ **FastAPI Migration Complete**
    - All API endpoints ported to FastAPI
@@ -472,7 +472,7 @@ packages = ["vwmp"]
 ## Next Steps
 
 1. **Complete Architectural Cleanup** (Phase 1)
-   - Move Confidentia handlers
+   - Move Project handlers
    - Remove hardcoded paths
    - Improve plugin isolation
 

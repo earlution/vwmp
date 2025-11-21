@@ -18,7 +18,7 @@ The VWMP container architecture decomposes the platform into major services/modu
 **Architecture Principles:**
 - **Separation of Concerns:** Clear boundaries between UI, API, execution engine, and plugins
 - **Plugin-Based:** Extensible architecture with plugin system
-- **Framework-Agnostic Core:** Core engine independent of Django-specific code
+- **Framework-Agnostic Core:** Core engine independent of framework-specific code
 - **Open-Source Ready:** Architecture designed for future standalone deployment
 
 ---
@@ -30,12 +30,12 @@ The VWMP container architecture decomposes the platform into major services/modu
 | Container | Description | Technology | Key Responsibilities |
 | --- | --- | --- | --- |
 | **Visual Workflow Designer** | Frontend UI for workflow creation and execution | React/Vue.js + React Flow/Vue Flow | Drag-and-drop workflow builder, step configuration UI, parameter input forms, execution monitoring dashboard |
-| **Workflow Management API** | REST API and WebSocket server for workflow operations | Django REST Framework + Django Channels | Workflow CRUD operations, execution control (start/stop/pause), status monitoring endpoints, configuration management, real-time updates via WebSocket |
+| **Workflow Management API** | REST API and WebSocket server for workflow operations | FastAPI + FastAPI WebSocket | Workflow CRUD operations, execution control (start/stop/pause), status monitoring endpoints, configuration management, real-time updates via WebSocket |
 | **Workflow Execution Engine** | Core workflow orchestration and step execution | Python 3.13+ (framework-agnostic) | Workflow parsing and validation, step execution orchestration, dependency resolution, error handling and recovery, plugin system management |
 | **Workflow Storage** | Persistent storage for workflow definitions and execution history | JSON/YAML files + PostgreSQL (optional) | Workflow definition persistence, version history, execution history, configuration storage |
-| **Release Workflow Plugin** | Plugin implementing release workflow use case | Python plugin (depends on execution engine) | Release workflow type definition, step handlers (version bump, changelog, git ops), Confidentia-specific integrations (KB, Kanban) |
+| **Release Workflow Plugin** | Plugin implementing release workflow use case | Python plugin (depends on execution engine) | Release workflow type definition, step handlers (version bump, changelog, git ops), Project-specific integrations (KB, Kanban) |
 | **Git Integration Plugin** | Plugin for git operations | Python plugin (depends on execution engine) | Git command execution (stage, commit, tag, push), git status checking, branch management |
-| **Confidentia Integration Plugin** | Plugin for Confidentia-specific integrations | Python plugin (depends on execution engine) | KB updater integration, Kanban updater integration, validator script execution |
+| **Project Integration Plugin** | Plugin for Project-specific integrations | Python plugin (depends on execution engine) | KB updater integration, Kanban updater integration, validator script execution |
 | **Validator Service** | External validation scripts | Python scripts (existing) | Branch context validation, changelog format validation, custom validation rules |
 
 ---
@@ -57,7 +57,7 @@ The VWMP container architecture decomposes the platform into major services/modu
 5. **Execution Engine** resolves execution order and executes steps:
    - Calls Release Workflow Plugin for release-specific steps
    - Calls Git Integration Plugin for git operations
-   - Calls Confidentia Integration Plugin for KB/Kanban updates
+   - Calls Project Integration Plugin for KB/Kanban updates
    - Calls Validator Service for validation
 6. **Execution Engine** sends status updates to Workflow Management API
 7. **Workflow Management API** streams status to Visual Workflow Designer via WebSocket
@@ -84,14 +84,14 @@ The VWMP container architecture decomposes the platform into major services/modu
 - **WebSocket:** Socket.io client or native WebSocket API
 
 ### Backend (Workflow Management API)
-- **Framework:** Django REST Framework
-- **WebSocket:** Django Channels
-- **Authentication:** Django authentication (can integrate with Confidentia auth)
+- **Framework:** FastAPI
+- **WebSocket:** FastAPI WebSocket
+- **Authentication:** Authentication (can integrate with project auth)
 - **API Documentation:** drf-spectacular (OpenAPI)
 
 ### Core Engine (Workflow Execution Engine)
 - **Language:** Python 3.13+
-- **Framework:** Framework-agnostic (no Django dependencies)
+- **Framework:** Framework-agnostic (no framework dependencies)
 - **Plugin System:** Python importlib for dynamic loading
 - **Schema Validation:** JSON Schema (jsonschema library)
 - **Async:** Python asyncio for parallel step execution
@@ -113,16 +113,16 @@ The VWMP container architecture decomposes the platform into major services/modu
 
 ### Deployment Topology
 
-**Option 1: Integrated with Confidentia (Initial)**
-- Visual Workflow Designer: Served as Django static files or separate service
-- Workflow Management API: Django app within Confidentia
-- Execution Engine: Python module within Django app
+**Option 1: Integrated with parent project (Initial)**
+- Visual Workflow Designer: Served as static files or separate service
+- Workflow Management API: FastAPI service within parent project
+- Execution Engine: Python module within FastAPI service
 - Plugins: Python modules loaded dynamically
 - Storage: File system for definitions, PostgreSQL for execution history
 
 **Option 2: Standalone Service (Future Open-Source)**
 - Visual Workflow Designer: Separate frontend service (React/Vue SPA)
-- Workflow Management API: Standalone Django/FastAPI service
+- Workflow Management API: Standalone FastAPI service
 - Execution Engine: Python package installable independently
 - Plugins: Installable Python packages
 - Storage: Configurable (files or database)
@@ -132,11 +132,11 @@ The VWMP container architecture decomposes the platform into major services/modu
 **Frontend (Visual Workflow Designer):**
 - Static file hosting (CDN for production)
 - Horizontal scaling via load balancer
-- WebSocket connections managed by Django Channels
+- WebSocket connections managed by FastAPI WebSocket
 
 **Backend (Workflow Management API):**
-- Horizontal scaling via Django/WSGI (Gunicorn/uWSGI)
-- Django Channels for WebSocket scaling (Redis as channel layer)
+- Horizontal scaling via FastAPI/ASGI (Gunicorn/uWSGI)
+- FastAPI WebSocket for WebSocket scaling (Redis as channel layer)
 - Database connection pooling for PostgreSQL
 
 **Core Engine (Execution Engine):**
@@ -152,14 +152,14 @@ The VWMP container architecture decomposes the platform into major services/modu
 
 **Development:**
 - Frontend: Node.js dev server
-- Backend: Django dev server
+- Backend: FastAPI dev server
 - Database: Local PostgreSQL (optional)
 - Storage: Local file system
 
 **Production:**
 - Frontend: Static file hosting (100MB+)
 - Backend: 512MB RAM, 1 CPU core minimum
-- Database: PostgreSQL (existing Confidentia DB or separate)
+- Database: PostgreSQL (existing project DB or separate)
 - Storage: File system (100MB+ for workflow definitions)
 
 ---
@@ -205,7 +205,7 @@ The VWMP container architecture decomposes the platform into major services/modu
 - Git operations validated before execution
 
 ### Authentication & Authorization
-- Integrate with Django authentication
+- Integrate with Authentication
 - Role-based access control (RBAC) for workflow operations
 - Audit logging for workflow executions
 
@@ -218,7 +218,7 @@ The VWMP container architecture decomposes the platform into major services/modu
 
 ## 8. Open Questions
 
-1. **Deployment Model:** Integrated with Confidentia initially, or standalone from start?
+1. **Deployment Model:** Integrated with parent project initially, or standalone from start?
 2. **Storage Strategy:** File-based only, or database support from the beginning?
 3. **Plugin Isolation:** Process isolation for plugins, or trust model?
 4. **Multi-tenancy:** Support multiple projects/workspaces, or single project initially?

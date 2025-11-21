@@ -13,14 +13,14 @@
 This document defines the plugin architecture for the Visual Workflow Management Platform (VWMP), designed for extensibility, independence, and future open-source spin-off potential. The architecture follows established patterns from SET2/SIT while providing clear plugin boundaries for workflow types, step handlers, and integrations.
 
 **Key Design Principles:**
-- **Clear Plugin Boundaries:** Confidentia-specific code isolated in adapter plugins
+- **Clear Plugin Boundaries:** Project-specific-specific code isolated in adapter plugins
 - **Framework-Agnostic Core:** Core engine independent of project-specific integrations
 - **Configuration-Driven:** No hardcoded paths or assumptions
 - **Open-Source Ready:** Architecture designed for standalone deployment
 - **Extensibility:** Easy to add new workflow types and step handlers
 
 **Rationale for Plugin Architecture:**
-- **Separation of Concerns:** Isolates Confidentia-specific code from generic core engine
+- **Separation of Concerns:** Isolates Project-specific-specific code from generic core engine
 - **Spin-Off Ready:** Core engine and generic plugins can be open-sourced independently
 - **Extensibility:** Allows community to add custom workflow types and step handlers
 - **Maintainability:** Clear boundaries make codebase easier to understand and maintain
@@ -63,7 +63,7 @@ The VWMP plugin system supports three primary plugin types:
                      ┌──────────┴──────────┐
                      │                     │
            ┌─────────▼─────────┐  ┌───────▼──────────┐
-           │ Integration       │  │ Confidentia      │
+           │ Integration       │  │ Project-specific      │
            │ Adapters          │  │ Adapters         │
            │                   │  │                  │
            │ - Git             │  │ - KB Updater     │
@@ -154,7 +154,7 @@ class ReleaseWorkflowTypePlugin(WorkflowTypePlugin):
             name="release",
             version="1.0.0",
             description="Release workflow for version bump, changelog, commit, tag, push",
-            author="Confidentia Team",
+            author="Project-specific Team",
             icon="🚀"
         )
 
@@ -185,9 +185,9 @@ class ReleaseWorkflowTypePlugin(WorkflowTypePlugin):
             "release.changelog_create",
             "release.changelog_update",
             "release.readme_update",
-            "confidentia.kanban_update",
+            "vwmp.kanban_update",
             "git.stage_all",
-            "confidentia.run_validators",
+            "vwmp.run_validators",
             "git.commit",
             "git.create_tag",
             "git.push"
@@ -515,9 +515,9 @@ plugins/
       commit.py           # GitCommitHandler
       create_tag.py       # GitTagHandler
       push.py             # GitPushHandler
-  confidentia/
+  project/
     __init__.py
-    adapter.py            # ConfidentiaAdapter (if needed)
+    adapter.py            # Project-specificAdapter (if needed)
     handlers/
       __init__.py
       kanban_update.py    # KanbanUpdateHandler
@@ -610,7 +610,7 @@ workflow_types:
   release:
     enabled: true
     config:
-      version_file: "src/confidentia/version.py"
+      version_file: "VERSION"
       changelog_dir: "KB/Changelog_and_Release_Notes/Changelog_Archive"
       main_changelog: "CHANGELOG.md"
 
@@ -653,7 +653,7 @@ integration_adapters:
 
 ### Core Engine (Framework-Agnostic)
 
-**Location:** `src/confidentia/vwmp/core/` (or standalone package)
+**Location:** `src/vwmp/core/` (or standalone package)
 
 **Responsibilities:**
 - Workflow parsing and validation
@@ -666,25 +666,25 @@ integration_adapters:
 - Python standard library
 - `jsonschema` for validation
 - `typing` for type hints
-- No Django, no Confidentia-specific code
+- No FastAPI, no Project-specific-specific code
 
-### Confidentia Adapters (Confidentia-Specific)
+### Project-specific Adapters (Project-specific-Specific)
 
-**Location:** `src/confidentia/vwmp/plugins/confidentia/`
+**Location:** `src/vwmp/plugins/project/`
 
 **Responsibilities:**
-- Confidentia-specific integrations (KB, Kanban)
-- Confidentia-specific step handlers
-- Confidentia-specific workflow types (if any)
+- Project-specific-specific integrations (KB, Kanban)
+- Project-specific-specific step handlers
+- Project-specific-specific workflow types (if any)
 
 **Dependencies:**
 - Core engine (framework-agnostic)
-- Confidentia-specific modules (KB structure, Kanban format)
-- Can import Confidentia code but core engine cannot
+- Project-specific-specific modules (KB structure, Kanban format)
+- Can import Project-specific code but core engine cannot
 
 ### Generic Plugins (Reusable)
 
-**Location:** `src/confidentia/vwmp/plugins/` or standalone packages
+**Location:** `src/vwmp/plugins/` or standalone packages
 
 **Responsibilities:**
 - Generic integrations (Git, File System, HTTP/API)
@@ -693,7 +693,7 @@ integration_adapters:
 
 **Dependencies:**
 - Core engine only
-- No Confidentia-specific code
+- No Project-specific-specific code
 
 ---
 
@@ -773,12 +773,12 @@ vwmp/
     adapter.py         # IntegrationAdapter interface
 ```
 
-**Confidentia Plugin Package (Separate):**
+**Project-specific Plugin Package (Separate):**
 ```
-vwmp-confidentia/
+vwmp-project/
   __init__.py
   plugins/
-    confidentia/       # Confidentia-specific plugin
+    project/       # Project-specific-specific plugin
       __init__.py
       handlers/
         kanban_update.py
@@ -788,7 +788,7 @@ vwmp-confidentia/
 
 **Benefits:**
 - Core VWMP can be open-sourced independently
-- Confidentia-specific code remains proprietary
+- Project-specific-specific code remains proprietary
 - Users can install `vwmp` and create their own plugins
 - Clear separation of concerns
 
@@ -882,8 +882,8 @@ class CustomStepHandler(StepHandler):
 ### Core Engine Independence
 
 **Must NOT Depend On:**
-- Django or any web framework
-- Confidentia-specific modules
+- FastAPI or any web framework
+- Project-specific-specific modules
 - Project-specific paths or assumptions
 - External services (must be configurable)
 
@@ -893,18 +893,18 @@ class CustomStepHandler(StepHandler):
 - Framework-agnostic execution
 - Standalone deployment
 
-### Confidentia Isolation
+### Project-specific Isolation
 
-**Confidentia-Specific Code:**
-- Isolated in `vwmp/plugins/confidentia/`
-- Can import Confidentia modules
+**Project-specific-Specific Code:**
+- Isolated in `vwmp/plugins/project/`
+- Can import Project-specific modules
 - Cannot be imported by core engine
 - Clear boundaries via adapter interfaces
 
 **Adapter Pattern:**
 - Core engine uses abstract adapter interfaces
-- Confidentia adapters implement interfaces
-- Core engine doesn't know about Confidentia specifics
+- Project-specific adapters implement interfaces
+- Core engine doesn't know about Project-specific specifics
 
 ---
 
@@ -934,7 +934,7 @@ step_handlers:
     config_schema:
       version_file:
         type: "string"
-        default: "src/confidentia/version.py"
+        default: "VERSION"
         description: "Path to version file"
     retry:
       enabled: false
@@ -1130,26 +1130,26 @@ step_handlers:
 ## Migration Path to Open-Source
 
 ### Phase 1: Integrated Plugin System
-- Plugins in `src/confidentia/vwmp/plugins/`
-- Confidentia-specific plugins mixed with generic plugins
+- Plugins in `src/vwmp/plugins/`
+- Project-specific-specific plugins mixed with generic plugins
 - File-based discovery
-- Core engine as Django module
+- Core engine as FastAPI module
 
 ### Phase 2: Plugin Separation
-- Move core engine to `src/confidentia/vwmp/core/`
-- Move generic plugins to `src/confidentia/vwmp/plugins/`
-- Move Confidentia-specific plugins to `src/confidentia/vwmp/plugins/confidentia/`
+- Move core engine to `src/vwmp/core/`
+- Move generic plugins to `src/vwmp/plugins/`
+- Move Project-specific-specific plugins to `src/vwmp/plugins/project/`
 - Add adapter interfaces for separation
 
 ### Phase 3: Standalone Package
 - Extract core engine to standalone `vwmp` package
 - Extract generic plugins to `vwmp` package
-- Create separate `vwmp-confidentia` package
+- Create separate `vwmp-project` package
 - Use entry points for plugin discovery
 
 ### Phase 4: Open-Source Release
 - Publish `vwmp` as open-source package
-- Keep `vwmp-confidentia` proprietary
+- Keep `vwmp-project` proprietary
 - Provide plugin development documentation
 - Create plugin ecosystem
 

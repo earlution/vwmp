@@ -76,6 +76,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#documentation">Documentation</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#changelog">Changelog</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -161,7 +162,33 @@ VWMP enables you to build and execute workflows through a visual designer interf
 * **CI/CD Pipelines** - Build continuous integration and deployment workflows visually
 * **Custom Automation** - Create any repeatable process workflow with plugin extensibility
 
-_For more examples and detailed documentation, please refer to the [Documentation](https://github.com/earlution/vwmp/wiki)_
+_For more examples and detailed documentation, please refer to the [Knowledge Base (KB/)](KB/) directory or the [Documentation Hub](KB/Documentation/Developer_Docs/vwmp/_index.md)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- DOCUMENTATION -->
+## Documentation
+
+Comprehensive documentation is available in the [`KB/`](KB/) directory:
+
+### 📚 Quick Links
+- **[Documentation Hub](KB/Documentation/Developer_Docs/vwmp/_index.md)** - Central navigation for all VWMP documentation
+- **[User Guide](KB/Documentation/Developer_Docs/vwmp/vwmp-user-guide.md)** - Complete user guide covering dashboard, designer, and execution
+- **[Tutorials](KB/Documentation/Developer_Docs/vwmp/)** - Step-by-step guides for building workflows
+- **[Best Practices](KB/Documentation/Developer_Docs/vwmp/best-practices.md)** - Workflow design patterns and recommendations
+
+### 🏗️ Architecture Documentation
+- **[Platform Architecture](KB/Architecture/Standards_and_ADRs/E01-vwmp-platform-architecture.md)** - High-level architecture design
+- **[Plugin Architecture](KB/Architecture/Standards_and_ADRs/E01-vwmp-plugin-architecture.md)** - Plugin system design
+- **[C4 Architecture Views](KB/Architecture/)** - Context, Container, Component, and Runtime views
+
+### 📋 Project Management
+- **[Epic Documentation](KB/PM_and_Portfolio/epics/overview/Epic%2001/)** - Epic 01 development documentation
+- **[Story Documentation](KB/PM_and_Portfolio/stories/overview/Epic%2001/)** - Individual story details
+
+See the [KB/README.md](KB/README.md) for a complete overview of all available documentation.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -263,7 +290,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-url]: https://github.com/earlution/vwmp/issues
 [license-shield]: https://img.shields.io/github/license/earlution/vwmp.svg?style=for-the-badge
 [license-url]: https://github.com/earlution/vwmp/blob/main/LICENSE
-[version-shield]: https://img.shields.io/badge/version-0.0.0%2B3-blue.svg?style=for-the-badge
+[version-shield]: https://img.shields.io/badge/version-0.0.0%2B4-blue.svg?style=for-the-badge
 [version-url]: https://github.com/earlution/vwmp/releases
 [pr-shield]: https://img.shields.io/github/issues-pr/earlution/vwmp.svg?style=for-the-badge
 [pr-url]: https://github.com/earlution/vwmp/pulls

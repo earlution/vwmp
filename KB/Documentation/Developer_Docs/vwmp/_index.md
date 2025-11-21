@@ -133,7 +133,7 @@ The **Kanban Review Workflow** demonstrates documentation quality assurance work
 
 ## 🔗 Related Documentation
 
-- **[Epic 01 Overview](../../../PM_and_Portfolio/epics/overview/Epic%2021/Epic-21.md)** - Epic documentation
+- **[Epic 01 Overview](../../../PM_and_Portfolio/epics/overview/Epic%2001/Epic-01.md)** - Epic documentation
 - **[VWMP Architecture](../../../Architecture/Standards_and_ADRs/E01-vwmp-platform-architecture.md)** - System architecture
 - **[Plugin Architecture](../../../Architecture/Standards_and_ADRs/E01-vwmp-plugin-architecture.md)** - Plugin system design
 

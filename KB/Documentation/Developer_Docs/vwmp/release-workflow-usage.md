@@ -70,7 +70,7 @@ curl -X POST http://localhost:8000/api/vwmp/workflows/<workflow-id>/execute/ \
 
 ## Importing the Release Workflow
 
-If the workflow hasn't been imported yet, use the Django management command:
+If the workflow hasn't been imported yet, use the management command:
 
 ```bash
 python manage.py import_workflow workflows/release-workflow.yaml
@@ -102,7 +102,7 @@ python manage.py import_workflow workflows/release-workflow.yaml --workflow-id r
 
 The Release Workflow consists of 10 steps:
 
-1. **Bump Version** - Increments version in `src/confidentia/version.py`
+1. **Bump Version** - Increments version in `VERSION`
 2. **Create Detailed Changelog** - Creates detailed changelog file with full timestamp
 3. **Update Main Changelog** - Updates summary in `CHANGELOG.md`
 4. **Update README** - Updates version badge and latest release callout
@@ -141,7 +141,7 @@ Workflow-level configuration (in YAML):
 
 ```yaml
 config:
-  version_file: src/confidentia/version.py
+  version_file: VERSION
   changelog_dir: KB/Changelog_and_Release_Notes/Changelog_Archive
   main_changelog: CHANGELOG.md
 ```
@@ -333,7 +333,7 @@ python scripts/automation/release_workflow.py \
 - **[VWMP Architecture](../../../../Architecture/Standards_and_ADRs/E01-vwmp-platform-architecture.md)** - Platform architecture overview
 - **[Visual Designer UI/UX](../../../../Architecture/Standards_and_ADRs/E01-vwmp-visual-designer-uiux.md)** - Designer interface documentation
 - **[Plugin Architecture](../../../../Architecture/Standards_and_ADRs/E01-vwmp-plugin-architecture.md)** - Plugin system documentation
-- **[Release Workflow Plugin](../../../../../../src/confidentia/vwmp/plugins/release/)** - Release workflow plugin implementation
+- **[Release Workflow Plugin](../../../../../../src/vwmp/plugins/release/)** - Release workflow plugin implementation
 
 ---
 
